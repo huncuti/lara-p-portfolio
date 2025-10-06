@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Lara Petrović</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime&family=Crimson+Text&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #F5F1E8;
+            background-image: url('resources/paper-texture.png');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #2C2C2C;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(245, 241, 232, 0.9);
+            border: 2px solid #8B7355;
+            box-shadow: 0 8px 32px rgba(139, 115, 85, 0.3);
+        }
+        
+        .header h1 {
+            font-family: 'Special Elite', cursive;
+            font-size: 2.5rem;
+            color: #2C2C2C;
+            margin-bottom: 1rem;
+        }
+        
+        .back-nav {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #8B7355;
+            text-decoration: none;
+            font-family: 'Special Elite', cursive;
+            padding: 0.5rem 1rem;
+            border: 1px solid #8B7355;
+            transition: all 0.3s ease;
+        }
+        
+        .back-nav:hover {
+            background: rgba(139, 115, 85, 0.1);
+            color: #2C2C2C;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-info {
+            background: rgba(245, 241, 232, 0.9);
+            border: 2px solid #8B7355;
+            padding: 2rem;
+            box-shadow: 0 4px 16px rgba(139, 115, 85, 0.2);
+        }
+        
+        .contact-form {
+            background: rgba(245, 241, 232, 0.9);
+            border: 2px solid #8B7355;
+            padding: 2rem;
+            box-shadow: 0 4px 16px rgba(139, 115, 85, 0.2);
+        }
+        
+        .section-title {
+            font-family: 'Special Elite', cursive;
+            font-size: 1.8rem;
+            color: #2C2C2C;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: #8B7355;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #8B7355;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #8B7355;
+            margin-right: 1rem;
+            width: 2rem;
+            text-align: center;
+        }
+        
+        .contact-details h4 {
+            font-family: 'Special Elite', cursive;
+            color: #2C2C2C;
+            margin-bottom: 0.3rem;
+        }
+        
+        .contact-details p {
+            color: #5A4A3A;
+            font-size: 0.9rem;
+        }
+        
+        .contact-details a {
+            color: #8B7355;
+            text-decoration: none;
+            border-bottom: 1px dotted #8B7355;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-details a:hover {
+            color: #2C2C2C;
+            border-bottom-style: solid;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-family: 'Special Elite', cursive;
+            color: #2C2C2C;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #8B7355;
+            background: rgba(255, 255, 255, 0.8);
+            font-family: 'Courier Prime', monospace;
+            font-size: 1rem;
+            color: #2C2C2C;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #2C2C2C;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            font-family: 'Special Elite', cursive;
+            font-size: 1.1rem;
+            color: #8B7355;
+            background: rgba(245, 241, 232, 0.9);
+            border: 2px solid #8B7355;
+            padding: 0.8rem 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            color: #2C2C2C;
+            background: rgba(139, 115, 85, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .professional-links {
+            background: rgba(245, 241, 232, 0.9);
+            border: 2px solid #8B7355;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 16px rgba(139, 115, 85, 0.2);
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .link-card {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #8B7355;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .link-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 115, 85, 0.2);
+            background: rgba(139, 115, 85, 0.1);
+        }
+        
+        .link-icon {
+            font-size: 2rem;
+            color: #8B7355;
+            margin-bottom: 1rem;
+        }
+        
+        .link-card h4 {
+            font-family: 'Special Elite', cursive;
+            color: #2C2C2C;
+            margin-bottom: 0.5rem;
+        }
+        
+        .link-card p {
+            color: #5A4A3A;
+            font-size: 0.9rem;
+        }
+        
+        .success-message {
+            display: none;
+            background: rgba(139, 115, 85, 0.1);
+            border: 2px solid #8B7355;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-family: 'Special Elite', cursive;
+            color: #2C2C2C;
+        }
+        
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #2C2C2C;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-nav">← Back to Home</a>
+            <h1>Get In Touch</h1>
+        </div>
+        
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2 class="section-title">Contact Information</h2>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p><a href="mailto:larabird1@gmail.com">larabird1@gmail.com</a></p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <h4>Phone</h4>
+                        <p><a href="tel:+385976701885">(+385) 976701885</a></p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
+                        <p>Željeznički blok 14<br>32100 Vinkovci, Croatia</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">🕒</div>
+                    <div class="contact-details">
+                        <h4>Availability</h4>
+                        <p>Available for research collaborations<br>and consulting opportunities</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h2 class="section-title">Send a Message</h2>
+                
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea id="message" name="message" class="form-input form-textarea" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                    
+                    <div class="success-message" id="successMessage">
+                        Thank you for your message! I'll get back to you soon.
+                        <span class="typewriter-cursor"></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="professional-links">
+            <h2 class="section-title">Professional Profiles</h2>
+            
+            <div class="links-grid">
+                <div class="link-card" onclick="window.open('https://www.hrstud.unizg.hr', '_blank')">
+                    <div class="link-icon">🎓</div>
+                    <h4>University Profile</h4>
+                    <p>Faculty of Croatian Studies, University of Zagreb</p>
+                </div>
+                
+                <div class="link-card" onclick="window.open('#', '_blank')">
+                    <div class="link-icon">🔬</div>
+                    <h4>ResearchGate</h4>
+                    <p>Scientific publications and research network</p>
+                </div>
+                
+                <div class="link-card" onclick="window.open('#', '_blank')">
+                    <div class="link-icon">📄</div>
+                    <h4>Google Scholar</h4>
+                    <p>Academic citations and research impact</p>
+                </div>
+                
+                <div class="link-card" onclick="window.open('#', '_blank')">
+                    <div class="link-icon">💼</div>
+                    <h4>LinkedIn</h4>
+                    <p>Professional network and career updates</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate contact items on load
+            anime({
+                targets: '.contact-item',
+                opacity: [0, 1],
+                translateX: [-30, 0],
+                delay: anime.stagger(200, {start: 500}),
+                duration: 800,
+                easing: 'easeOutExpo'
+            });
+            
+            // Animate link cards
+            anime({
+                targets: '.link-card',
+                opacity: [0, 1],
+                translateY: [30, 0],
+                delay: anime.stagger(150, {start: 800}),
+                duration: 800,
+                easing: 'easeOutExpo'
+            });
+            
+            // Form submission handling
+            const form = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulate form submission
+                const submitBtn = form.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                
+                // Simulate processing time
+                setTimeout(() => {
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Add typewriter effect to success message
+                    const typed = new Typed('#successMessage', {
+                        strings: [
+                            'Thank you for your message! I will get back to you within 24-48 hours.'
+                        ],
+                        typeSpeed: 30,
+                        showCursor: false,
+                        onComplete: function() {
+                            // Reset form after delay
+                            setTimeout(() => {
+                                form.style.display = 'block';
+                                successMessage.style.display = 'none';
+                                form.reset();
+                                submitBtn.textContent = originalText;
+                                submitBtn.disabled = false;
+                            }, 5000);
+                        }
+                    });
+                }, 2000);
+            });
+            
+            // Add typewriter effect to form labels
+            const formLabels = document.querySelectorAll('.form-label');
+            formLabels.forEach(label => {
+                const originalText = label.textContent;
+                label.textContent = '';
+                
+                const typed = new Typed(label, {
+                    strings: [originalText],
+                    typeSpeed: 50,
+                    showCursor: false,
+                    startDelay: Math.random() * 1000
+                });
+            });
+            
+            // Add focus effects to form inputs
+            const formInputs = document.querySelectorAll('.form-input');
+            formInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    // Simulate typewriter carriage return sound
+                    playTypewriterSound();
+                });
+            });
+            
+            function playTypewriterSound() {
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(300, audioContext.currentTime + 0.05);
+                    
+                    gainNode.gain.setValueAtTime(0.05, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+                    
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 0.05);
+                } catch (e) {
+                    // Silent fail if audio context not supported
+                }
+            }
+        });
+    </script>
+</body>
+</html>

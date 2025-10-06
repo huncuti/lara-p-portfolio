@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lara Petrović - Psychology Researcher</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime&family=Crimson+Text&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #F5F1E8;
+            background-image: url('resources/paper-texture.png');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #2C2C2C;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .typewriter-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .hero-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background: rgba(245, 241, 232, 0.9);
+            border: 2px solid #8B7355;
+            box-shadow: 0 8px 32px rgba(139, 115, 85, 0.3);
+            position: relative;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #D4A574, #8B7355);
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .main-title {
+            font-family: 'Special Elite', cursive;
+            font-size: 3.5rem;
+            color: #2C2C2C;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.4rem;
+            color: #8B7355;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        
+        .typewriter-text {
+            font-size: 1.1rem;
+            margin: 2rem 0;
+            min-height: 60px;
+            border-right: 2px solid #2C2C2C;
+            padding-right: 5px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: #2C2C2C; }
+            51%, 100% { border-color: transparent; }
+        }
+        
+        .navigation {
+            margin-top: 3rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-item {
+            font-family: 'Special Elite', cursive;
+            font-size: 1.1rem;
+            color: #8B7355;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #8B7355;
+            background: rgba(245, 241, 232, 0.8);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .nav-item:hover {
+            color: #2C2C2C;
+            background: rgba(212, 165, 116, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+        }
+        
+        .nav-item::before {
+            content: '> ';
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-item:hover::before {
+            opacity: 1;
+        }
+        
+        .research-highlights {
+            margin-top: 4rem;
+            padding: 2rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .section-title {
+            font-family: 'Special Elite', cursive;
+            font-size: 2rem;
+            color: #2C2C2C;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: #8B7355;
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .research-card {
+            background: rgba(245, 241, 232, 0.9);
+            border: 1px solid #8B7355;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 115, 85, 0.2);
+        }
+        
+        .research-card h3 {
+            font-family: 'Special Elite', cursive;
+            color: #2C2C2C;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .research-card p {
+            color: #5A4A3A;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .research-card .meta {
+            font-size: 0.9rem;
+            color: #8B7355;
+            font-style: italic;
+        }
+        
+        .contact-preview {
+            margin-top: 4rem;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(245, 241, 232, 0.8);
+            border-top: 2px solid #8B7355;
+        }
+        
+        .contact-info {
+            font-size: 1.1rem;
+            color: #2C2C2C;
+            margin: 1rem 0;
+        }
+        
+        .contact-info a {
+            color: #8B7355;
+            text-decoration: none;
+            border-bottom: 1px dotted #8B7355;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: #2C2C2C;
+            border-bottom-style: solid;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding: 2rem;
+            text-align: center;
+            color: #8B7355;
+            font-size: 0.9rem;
+            border-top: 1px solid #8B7355;
+        }
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #2C2C2C;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="typewriter-container">
+        <!-- Hero Section -->
+        <div class="hero-section fade-in">
+            <h1 class="main-title" id="main-title">LARA PETROVIĆ</h1>
+            <p class="subtitle">Psychology Researcher & Academic</p>
+            <div class="typewriter-text" id="typewriter-intro"></div>
+            
+            <nav class="navigation">
+                <a href="about.html" class="nav-item">About</a>
+                <a href="research.html" class="nav-item">Research</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+            </nav>
+        </div>
+        
+        <!-- Research Highlights -->
+        <div class="research-highlights fade-in">
+            <h2 class="section-title">Current Research</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <h3>Emotion Regulation Meta-Analysis</h3>
+                    <p>Conducting comprehensive meta-analysis of mindfulness-based interventions on emotion regulation. Data extraction, quality assessment, and author correspondence for systematic review.</p>
+                    <div class="meta">University of Amsterdam • 2024 - Present</div>
+                </div>
+                
+                <div class="research-card">
+                    <h3>Intelligence & Creativity Research</h3>
+                    <p>Supporting research on the overlap of intelligence, creativity and personality constructs in artists, non-artists and naive artists across multiple phases of scientific investigation.</p>
+                    <div class="meta">University of Zagreb • 2023 - Present</div>
+                </div>
+                
+                <div class="research-card">
+                    <h3>Digital Biomarkers Research</h3>
+                    <p>Research on digital biomarkers for neuropsychiatric conditions, scientific writing, data analysis, and grant applications preparation for AI-driven healthcare solutions.</p>
+                    <div class="meta">Vitafluence.ai • 2023 - 2024</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Preview -->
+        <div class="contact-preview fade-in">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:larabird1@gmail.com">larabird1@gmail.com</a></p>
+                <p>Phone: (+385) 976701885</p>
+                <p>Based in: Vinkovci, Croatia</p>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <p>&copy; 2024 Lara Petrović. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Typewriter Effect for Introduction
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize typewriter effect
+            const typed = new Typed('#typewriter-intro', {
+                strings: [
+                    'Researching the intersection of emotion regulation and mindfulness-based interventions.',
+                    'Exploring intelligence, creativity, and personality constructs in artistic populations.',
+                    'Developing digital biomarkers for neuropsychiatric conditions.',
+                    'Passionate about advancing psychological science through rigorous research.'
+                ],
+                typeSpeed: 50,
+                backSpeed: 30,
+                backDelay: 2000,
+                startDelay: 1000,
+                loop: true,
+                showCursor: false
+            });
+            
+            // Animate main title characters
+            const title = document.getElementById('main-title');
+            const titleText = title.textContent;
+            title.innerHTML = '';
+            
+            for (let i = 0; i < titleText.length; i++) {
+                const span = document.createElement('span');
+                span.textContent = titleText[i];
+                span.style.opacity = '0';
+                span.style.display = 'inline-block';
+                title.appendChild(span);
+            }
+            
+            // Animate title characters with delay
+            anime({
+                targets: '#main-title span',
+                opacity: 1,
+                translateY: [20, 0],
+                delay: anime.stagger(100, {start: 500}),
+                duration: 800,
+                easing: 'easeOutExpo'
+            });
+            
+            // Animate research cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.research-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+            
+            // Add typewriter sound effect (optional)
+            function playTypewriterSound() {
+                // Create audio context for typewriter sound
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1);
+            }
+            
+            // Add click sounds to navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    playTypewriterSound();
+                    
+                    // Add visual feedback
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-2px)';
+                        // Navigate after animation
+                        setTimeout(() => {
+                            window.location.href = this.href;
+                        }, 200);
+                    }, 100);
+                });
+            });
+        });
+        
+        // Add paper texture overlay effect
+        function createPaperTexture() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Create subtle noise texture
+            const imageData = ctx.createImageData(canvas.width, canvas.height);
+            const data = imageData.data;
+            
+            for (let i = 0; i < data.length; i += 4) {
+                const noise = Math.random() * 20 - 10;
+                data[i] = 245 + noise;     // Red
+                data[i + 1] = 241 + noise; // Green
+                data[i + 2] = 232 + noise; // Blue
+                data[i + 3] = 15;          // Alpha (very subtle)
+            }
+            
+            ctx.putImageData(imageData, 0, 0);
+            
+            const texture = document.createElement('div');
+            texture.style.position = 'fixed';
+            texture.style.top = '0';
+            texture.style.left = '0';
+            texture.style.width = '100%';
+            texture.style.height = '100%';
+            texture.style.backgroundImage = `url(${canvas.toDataURL()})`;
+            texture.style.pointerEvents = 'none';
+            texture.style.zIndex = '1';
+            texture.style.opacity = '0.3';
+            
+            document.body.appendChild(texture);
+        }
+        
+        // Initialize paper texture
+        window.addEventListener('load', createPaperTexture);
+    </script>
+</body>
+</html>

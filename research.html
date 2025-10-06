@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Lara Petrović</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime&family=Crimson+Text&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #F5F1E8;
+            background-image: url('resources/paper-texture.png');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #2C2C2C;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(245, 241, 232, 0.9);
+            border: 2px solid #8B7355;
+            box-shadow: 0 8px 32px rgba(139, 115, 85, 0.3);
+        }
+        
+        .header h1 {
+            font-family: 'Special Elite', cursive;
+            font-size: 2.5rem;
+            color: #2C2C2C;
+            margin-bottom: 1rem;
+        }
+        
+        .back-nav {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #8B7355;
+            text-decoration: none;
+            font-family: 'Special Elite', cursive;
+            padding: 0.5rem 1rem;
+            border: 1px solid #8B7355;
+            transition: all 0.3s ease;
+        }
+        
+        .back-nav:hover {
+            background: rgba(139, 115, 85, 0.1);
+            color: #2C2C2C;
+        }
+        
+        .research-timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+        
+        .research-timeline::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #8B7355;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            margin-left: 4rem;
+            background: rgba(245, 241, 232, 0.9);
+            border: 1px solid #8B7355;
+            padding: 2rem;
+            box-shadow: 0 4px 16px rgba(139, 115, 85, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 115, 85, 0.3);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 1rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: #8B7355;
+            border-radius: 50%;
+            border: 3px solid #F5F1E8;
+        }
+        
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .timeline-title {
+            font-family: 'Special Elite', cursive;
+            color: #2C2C2C;
+            font-size: 1.3rem;
+            flex: 1;
+        }
+        
+        .timeline-date {
+            font-family: 'Special Elite', cursive;
+            color: #8B7355;
+            font-size: 1rem;
+            background: rgba(139, 115, 85, 0.1);
+            padding: 0.3rem 0.8rem;
+            border: 1px solid #8B7355;
+        }
+        
+        .timeline-location {
+            color: #5A4A3A;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-description {
+            color: #2C2C2C;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-details {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dotted #8B7355;
+        }
+        
+        .timeline-details.expanded {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .detail-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .detail-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #5A4A3A;
+        }
+        
+        .detail-list li::before {
+            content: '-';
+            position: absolute;
+            left: 0;
+            color: #8B7355;
+            font-weight: bold;
+        }
+        
+        .expand-indicator {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            color: #8B7355;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-item.expanded .expand-indicator {
+            transform: rotate(180deg);
+        }
+        
+        .research-themes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .theme-card {
+            background: rgba(245, 241, 232, 0.9);
+            border: 2px solid #8B7355;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 115, 85, 0.3);
+        }
+        
+        .theme-icon {
+            font-size: 2.5rem;
+            color: #8B7355;
+            margin-bottom: 1rem;
+        }
+        
+        .theme-card h3 {
+            font-family: 'Special Elite', cursive;
+            color: #2C2C2C;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .theme-card p {
+            color: #5A4A3A;
+            line-height: 1.6;
+        }
+        
+        .section-title {
+            font-family: 'Special Elite', cursive;
+            font-size: 2rem;
+            color: #2C2C2C;
+            text-align: center;
+            margin: 3rem 0 2rem 0;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: #8B7355;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .research-timeline::before {
+                left: 1rem;
+            }
+            
+            .timeline-item {
+                margin-left: 2rem;
+                padding: 1.5rem;
+            }
+            
+            .timeline-item::before {
+                left: -2rem;
+                width: 1rem;
+                height: 1rem;
+            }
+            
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .research-themes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-nav">← Back to Home</a>
+            <h1>Research Experience</h1>
+        </div>
+        
+        <div class="research-themes">
+            <div class="theme-card">
+                <div class="theme-icon">🧠</div>
+                <h3>Emotion Regulation</h3>
+                <p>Investigating mindfulness-based interventions and their effects on emotion regulation mechanisms across diverse populations.</p>
+            </div>
+            
+            <div class="theme-card">
+                <div class="theme-icon">🎨</div>
+                <h3>Creativity & Intelligence</h3>
+                <p>Exploring the intersection of intelligence, creativity, and personality constructs in artistic and non-artistic populations.</p>
+            </div>
+            
+            <div class="theme-card">
+                <div class="theme-icon">🔬</div>
+                <h3>Digital Biomarkers</h3>
+                <p>Researching digital biomarkers for neuropsychiatric conditions and their applications in AI-driven healthcare solutions.</p>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Research Timeline</h2>
+        
+        <div class="research-timeline">
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="expand-indicator">▼</div>
+                <div class="timeline-header">
+                    <h3 class="timeline-title">Research Assistant - Meta-Analysis</h3>
+                    <span class="timeline-date">May 2024 - Present</span>
+                </div>
+                <div class="timeline-location">University of Amsterdam, Netherlands</div>
+                <div class="timeline-description">
+                    Conducting comprehensive meta-analysis of mindfulness-based interventions on emotion regulation. Erasmus+ internship with continued collaboration.
+                </div>
+                <div class="timeline-details">
+                    <ul class="detail-list">
+                        <li>Systematic literature review and data extraction from multiple databases</li>
+                        <li>Quality assessment of studies using standardized criteria</li>
+                        <li>Contacting authors for additional data and clarification</li>
+                        <li>Statistical analysis and effect size calculations</li>
+                        <li>Collaboration with mindfulness experts and research team</li>
+                        <li>Manuscript preparation for peer-reviewed publication</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="expand-indicator">▼</div>
+                <div class="timeline-header">
+                    <h3 class="timeline-title">Research Scholar</h3>
+                    <span class="timeline-date">January 2023 - Present</span>
+                </div>
+                <div class="timeline-location">University of Zagreb, Croatia</div>
+                <div class="timeline-description">
+                    Supporting research on intelligence, creativity, and personality constructs in various populations including artists and non-artists.
+                </div>
+                <div class="timeline-details">
+                    <ul class="detail-list">
+                        <li>Assistance in multiple phases of scientific research projects</li>
+                        <li>Data collection and analysis for personality studies</li>
+                        <li>Literature review and theoretical framework development</li>
+                        <li>Collaboration with interdisciplinary research teams</li>
+                        <li>Statistical analysis using SPSS and R</li>
+                        <li>Research methodology consultation and support</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="expand-indicator">▼</div>
+                <div class="timeline-header">
+                    <h3 class="timeline-title">Research Assistant - AI & Healthcare</h3>
+                    <span class="timeline-date">July 2024 - September 2024</span>
+                </div>
+                <div class="timeline-location">Vitafluence.ai, Germany</div>
+                <div class="timeline-description">
+                    Scientific research and project preparation for AI-driven healthcare solutions focusing on digital biomarkers for neuropsychiatric conditions.
+                </div>
+                <div class="timeline-details">
+                    <ul class="detail-list">
+                        <li>Research on digital biomarkers for various neuropsychiatric conditions</li>
+                        <li>Scientific writing and grant application preparation</li>
+                        <li>Literature review and database organization</li>
+                        <li>EU AI Act compliance research and preparation</li>
+                        <li>Publication strategy development</li>
+                        <li>Cross-functional collaboration with AI and medical teams</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="expand-indicator">▼</div>
+                <div class="timeline-header">
+                    <h3 class="timeline-title">Research Intern</h3>
+                    <span class="timeline-date">October 2023 - April 2024</span>
+                </div>
+                <div class="timeline-location">Vitafluence.ai, Germany</div>
+                <div class="timeline-description">
+                    Erasmus+ internship focused on scientific research, data analysis, and preparation for EU AI Act compliance in healthcare AI applications.
+                </div>
+                <div class="timeline-details">
+                    <ul class="detail-list">
+                        <li>Comprehensive literature review and database management</li>
+                        <li>Data analysis and statistical reporting</li>
+                        <li>Scientific writing for technical documentation</li>
+                        <li>Research on regulatory compliance frameworks</li>
+                        <li>Digital biomarker identification and validation</li>
+                        <li>Assistance with publication strategy and dissemination</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="expand-indicator">▼</div>
+                <div class="timeline-header">
+                    <h3 class="timeline-title">Assistant Project Manager</h3>
+                    <span class="timeline-date">January 2023 - July 2023</span>
+                </div>
+                <div class="timeline-location">Institute for STEM Education, Croatia</div>
+                <div class="timeline-description">
+                    Supporting management of EU-funded projects focused on STEM education and accessibility in educational programs.
+                </div>
+                <div class="timeline-details">
+                    <ul class="detail-list">
+                        <li>Project coordination for EU-funded initiatives</li>
+                        <li>Stakeholder communication and reporting</li>
+                        <li>Budget tracking and financial documentation</li>
+                        <li>Event organization and logistics management</li>
+                        <li>Quality assurance and deliverable review</li>
+                        <li>Collaboration with international project partners</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="expand-indicator">▼</div>
+                <div class="timeline-header">
+                    <h3 class="timeline-title">UX/UI Designer</h3>
+                    <span class="timeline-date">October 2022 - November 2022</span>
+                </div>
+                <div class="timeline-location">Mindsmiths, Croatia</div>
+                <div class="timeline-description">
+                    Apprenticeship in UX/UI design with focus on UX writing, research, and development of internal UX research protocols.
+                </div>
+                <div class="timeline-details">
+                    <ul class="detail-list">
+                        <li>UX writing and content strategy development</li>
+                        <li>User research and usability testing</li>
+                        <li>Internal UX research protocol compilation</li>
+                        <li>Wireframing and prototyping</li>
+                        <li>Collaboration with design and development teams</li>
+                        <li>User journey mapping and persona development</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleDetails(element) {
+            const details = element.querySelector('.timeline-details');
+            const indicator = element.querySelector('.expand-indicator');
+            
+            if (details.classList.contains('expanded')) {
+                details.classList.remove('expanded');
+                element.classList.remove('expanded');
+            } else {
+                // Close all other expanded items
+                document.querySelectorAll('.timeline-item.expanded').forEach(item => {
+                    item.classList.remove('expanded');
+                    item.querySelector('.timeline-details').classList.remove('expanded');
+                });
+                
+                details.classList.add('expanded');
+                element.classList.add('expanded');
+                
+                // Scroll to element
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 300);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate timeline items on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(50px)';
+                item.style.transition = 'all 0.6s ease';
+                observer.observe(item);
+            });
+            
+            // Animate theme cards
+            document.querySelectorAll('.theme-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `all 0.6s ease ${index * 0.2}s`;
+                
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

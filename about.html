@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Lara Petrović</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime&family=Crimson+Text&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #F5F1E8;
+            background-image: url('resources/paper-texture.png');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #2C2C2C;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(245, 241, 232, 0.9);
+            border: 2px solid #8B7355;
+            box-shadow: 0 8px 32px rgba(139, 115, 85, 0.3);
+        }
+        
+        .header h1 {
+            font-family: 'Special Elite', cursive;
+            font-size: 2.5rem;
+            color: #2C2C2C;
+            margin-bottom: 1rem;
+        }
+        
+        .back-nav {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #8B7355;
+            text-decoration: none;
+            font-family: 'Special Elite', cursive;
+            padding: 0.5rem 1rem;
+            border: 1px solid #8B7355;
+            transition: all 0.3s ease;
+        }
+        
+        .back-nav:hover {
+            background: rgba(139, 115, 85, 0.1);
+            color: #2C2C2C;
+        }
+        
+        .content-section {
+            background: rgba(245, 241, 232, 0.9);
+            border: 1px solid #8B7355;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 16px rgba(139, 115, 85, 0.2);
+        }
+        
+        .section-title {
+            font-family: 'Special Elite', cursive;
+            font-size: 1.8rem;
+            color: #2C2C2C;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #8B7355;
+            padding-bottom: 0.5rem;
+        }
+        
+        .education-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #8B7355;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: #8B7355;
+            border-radius: 50%;
+        }
+        
+        .timeline-date {
+            font-family: 'Special Elite', cursive;
+            color: #8B7355;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content h3 {
+            font-family: 'Special Elite', cursive;
+            color: #2C2C2C;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content p {
+            color: #5A4A3A;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-category {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #8B7355;
+            padding: 1.5rem;
+        }
+        
+        .skill-category h4 {
+            font-family: 'Special Elite', cursive;
+            color: #2C2C2C;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dotted #8B7355;
+        }
+        
+        .skill-name {
+            color: #5A4A3A;
+            font-weight: bold;
+        }
+        
+        .skill-level {
+            color: #8B7355;
+            font-size: 0.9rem;
+        }
+        
+        .personal-statement {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #2C2C2C;
+            text-align: justify;
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .education-timeline {
+                padding-left: 1rem;
+            }
+            
+            .timeline-item {
+                padding-left: 1.5rem;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-nav">← Back to Home</a>
+            <h1>About Lara Petrović</h1>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Education</h2>
+            <div class="education-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2020 - 2024</div>
+                    <div class="timeline-content">
+                        <h3>Master of Psychology (univ. mag. psych.)</h3>
+                        <p>Faculty of Croatian Studies, University of Zagreb</p>
+                        <p>Advanced studies in psychological research methods, data analysis, and specialized areas of psychology.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2017 - 2020</div>
+                    <div class="timeline-content">
+                        <h3>Bachelor of Psychology (univ. bacc. psych.)</h3>
+                        <p>Faculty of Croatian Studies, University of Zagreb</p>
+                        <p>Comprehensive undergraduate program covering foundational psychological theories and research methods.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h4>Research Methods</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">Meta-Analysis</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Data Extraction</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Quality Assessment</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Literature Review</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Technical Skills</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">SPSS</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">R/RStudio</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Zotero</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Rayyan</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Languages</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">Croatian</span>
+                        <span class="skill-level">Native</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">English</span>
+                        <span class="skill-level">B2 (Independent)</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">German</span>
+                        <span class="skill-level">A1 (Basic)</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Creative Tools</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">Adobe Photoshop</span>
+                        <span class="skill-level">Basic</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Adobe Premiere Pro</span>
+                        <span class="skill-level">Basic</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Adobe After Effects</span>
+                        <span class="skill-level">Basic</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Microsoft Office</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Professional Statement</h2>
+            <div class="personal-statement">
+                <p>As a dedicated psychology researcher with extensive experience in academic and industry settings, I am passionate about advancing our understanding of human behavior, emotion regulation, and cognitive processes. My research focuses on the intersection of mindfulness-based interventions and emotion regulation, with particular interest in how these findings can be applied to improve mental health outcomes.</p>
+                
+                <p>Through my work at the University of Amsterdam, University of Zagreb, and Vitafluence.ai, I have developed expertise in meta-analysis, systematic literature reviews, and digital biomarker research. I am particularly interested in the potential of AI-driven solutions to enhance psychological assessment and intervention strategies.</p>
+                
+                <p>My international experience across Croatia, Netherlands, and Germany has provided me with a global perspective on psychological research and its applications. I am committed to conducting rigorous, evidence-based research that contributes meaningfully to the field of psychology and ultimately benefits individuals and communities.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate timeline items on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-30px)';
+                item.style.transition = 'all 0.6s ease';
+                observer.observe(item);
+            });
+            
+            // Animate skill categories
+            document.querySelectorAll('.skill-category').forEach((category, index) => {
+                category.style.opacity = '0';
+                category.style.transform = 'translateY(30px)';
+                category.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                
+                observer.observe(category);
+            });
+        });
+    </script>
+</body>
+</html>
