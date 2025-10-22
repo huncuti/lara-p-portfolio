@@ -23,7 +23,7 @@
         }
 
         @font-face {
-            font-family: 'Velvetyne';
+            font-family: 'Velvelyne';
             src: url('fonts/Velvelyne-Regular.woff2') format('woff2'),
                  url('fonts/Velvelyne-Regular.woff') format('woff');
             font-weight: normal;
@@ -39,7 +39,7 @@
         }
 
         body {
-            font-family: 'Velvetyne', sans-serif;
+            font-family: 'Velvelyne', sans-serif;
             background: #000;
             color: #fff;
             line-height: 1.6;
@@ -76,6 +76,11 @@
         .typewriter-text {
             font-size: 1.5rem;
             margin-top: 1rem;
+            /* Reserve fixed vertical space so nav doesn't shift */
+            height: 1.6em; /* equals one line at current line-height */
+            white-space: nowrap; /* prevent wrapping that would increase height */
+            overflow: hidden; /* avoid layout shift on long strings */
+            text-overflow: ellipsis;
         }
 
         /* ===== Navigation ===== */
@@ -108,7 +113,7 @@
         }
 
         .section-title {
-            font-family: 'Velvetyne', serif;
+            font-family: 'Velvelyne', serif;
             font-size: 4rem;
             margin-bottom: 2rem;
             color: transparent;
@@ -132,7 +137,7 @@
         }
 
         .research-card h3 {
-            font-family: 'Velvetyne', serif;
+            font-family: 'Velvelyne', serif;
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
