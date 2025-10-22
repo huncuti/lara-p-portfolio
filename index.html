@@ -12,15 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
     
-    <style>
-        /* ========== CHANGED: Added Letters Torn font ========== */
-        @font-face {
-            font-family: 'Letters Torn';
-            src: url('fonts/Letters-Torn.woff2') format('woff2'),
-                 url('fonts/Letters-Torn.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
+<style>
         }
         
         /* ========== CHANGED: Added Velvetyne font for body ========== */
@@ -81,7 +73,7 @@
         
         /* ========== UPDATED: Use Bianzhidai for title ========== */
         .main-title {
-            font-family: 'Bianzhidai', 'Letters Torn', serif;
+            font-family: 'Bianzhidai', serif;
             font-size: 10rem;
             color: #2C2C2C;
             margin-top: 7rem;
@@ -356,8 +348,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const typed = new Typed('#typewriter-intro', {
                 strings: [
-                    'Expert and researcher',
-                    'in cybercommunication',
+                    'Expert and researcher in cybercommunication',
                 ],
                 typeSpeed: 50,
                 backSpeed: 30,
