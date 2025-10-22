@@ -42,11 +42,8 @@
         body {
             /* ========== CHANGED: Using Velvetyne for body text ========== */
             font-family: 'Velvetyne', sans-serif;
-            background: #F5F1E8;
-            background-image: url('resources/paper-texture.png');
-            background-size: cover;
-            background-attachment: fixed;
-            color: #2C2C2C;
+            background: #000;
+            color: #fff;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -59,6 +56,7 @@
             align-items: center;
             padding: 2rem;
             position: relative;
+            background: #000;
         }
         
         /* ========== CHANGED: Centered at top of page ========== */
@@ -72,7 +70,7 @@
         .main-title {
                 font-family: 'Typefesse', serif;
                   font-size: 10rem;
-                  color: #2C2C2C;
+                  color: #fff;
                   margin-top: 7rem;
                   letter-spacing: 0.1em;
                   text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
@@ -88,6 +86,7 @@
             min-height: 60px;
             /* ========== REMOVED: Blinking cursor animation ========== */
             padding-right: 5px;
+            color: #fff;
         }
         
         /* ========== REMOVED: Blink animation (commented out) ========== */
@@ -114,15 +113,15 @@
             text-decoration: none;
             padding: 0.8rem 1.5rem;
             border: 2px solid #8B7355;
-            background: rgba(245, 241, 232, 0.8);
+            background: rgba(255,255,255,0.1);
             transition: all 0.3s ease;
             position: relative;
             cursor: pointer;
         }
         
         .nav-item:hover {
-            color: #2C2C2C;
-            background: rgba(212, 165, 116, 0.2);
+            color: #000;
+            background: #fff;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
         }
@@ -173,7 +172,7 @@
         }
         
         .research-card {
-            background: rgba(245, 241, 232, 0.9);
+            background: rgba(255,255,255,0.1);
             border: 1px solid #8B7355;
             padding: 1.5rem;
             transition: all 0.3s ease;
@@ -201,7 +200,7 @@
         
         .research-card .meta {
             font-size: 0.9rem;
-            color: #8B7355;
+            color: #fff;
             font-style: italic;
         }
         
