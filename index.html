@@ -60,6 +60,7 @@ body {
     position: relative;
     text-align: center;
     padding-top: 3rem;
+    min-height: 30rem;
 }
 
 .hero-text {
@@ -89,7 +90,11 @@ body {
     gap: 1.5rem;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 14rem; /* fixed space below hero text */
+   position: absolute; /* float nav */
+    bottom: 0; /* stick to bottom of hero section */
+    left: 50%;
+    transform: translateX(-50%);
+}
 }
 
 .nav-item {
