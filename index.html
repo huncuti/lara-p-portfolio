@@ -13,152 +13,195 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
 
 <style>
-/* Fonts from GitHub raw URLs */
+/* ===== Fonts ===== */
 @font-face {
-  font-family: 'Velvetyne';
-  src: url('https://raw.githubusercontent.com/huncuti/server.xyz/main/fonts/Velvetyne-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'Velvetyne';
+    src: url('fonts/Velvetyne-Regular.woff2') format('woff2'),
+         url('fonts/Velvetyne-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Bianzhidai';
-  src: url('https://raw.githubusercontent.com/huncuti/server.xyz/main/fonts/bianzhidai_noBG-Bubble.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'Bianzhidai';
+    src: url('fonts/bianzhidai_COLR-grid.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
-/* Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ===== Reset & Base ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Velvetyne', sans-serif;
-  background: #F5F1E8;
-  background-image: url('resources/paper-texture.png');
-  background-size: cover;
-  background-attachment: fixed;
-  color: #2C2C2C;
-  line-height: 1.6;
-  overflow-x: hidden;
+    font-family: 'Velvetyne', sans-serif;
+    background: #F5F1E8 url('resources/paper-texture.png') no-repeat center center fixed;
+    background-size: cover;
+    color:#2C2C2C;
+    line-height:1.6;
+    overflow-x:hidden;
 }
 
-/* Layout */
-.typewriter-container { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; position: relative; }
-.hero-section { text-align: center; padding-top: 3rem; width: 100%; }
-
-/* Title */
+/* ===== Hero ===== */
+.typewriter-container { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem; }
+.hero-section { text-align:center; padding-top:3rem; width:100%; }
 .main-title {
-  font-family: 'Bianzhidai', serif;
-  font-size: 10rem;
-  color: #2C2C2C;
-  margin-top: 7rem;
-  letter-spacing: 0.1em;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    font-family:'Bianzhidai', serif;
+    font-size:10rem;
+    color:#2C2C2C;
+    margin-top:7rem;
+    letter-spacing:0.1em;
+    text-shadow:2px 2px 4px rgba(0,0,0,0.1);
 }
+.typewriter-text { font-size:1.1rem; margin:2rem 0; min-height:60px; padding-right:5px; }
 
-/* Navigation */
-.navigation { margin-top: 8rem; display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+/* ===== Navigation ===== */
+.navigation { margin-top:8rem; display:flex; gap:2rem; flex-wrap:wrap; justify-content:center; }
 .nav-item {
-  font-family: 'Velvetyne', sans-serif;
-  font-size: 1.1rem;
-  color: #8B7355;
-  text-decoration: none;
-  padding: 0.8rem 1.5rem;
-  border: 2px solid #8B7355;
-  background: rgba(245, 241, 232, 0.8);
-  transition: all 0.3s ease;
-  position: relative;
-  cursor: pointer;
+    font-family:'Velvetyne', sans-serif;
+    font-size:1.1rem;
+    color:#8B7355;
+    text-decoration:none;
+    padding:0.8rem 1.5rem;
+    border:2px solid #8B7355;
+    background:rgba(245,241,232,0.8);
+    transition:all 0.3s ease;
+    position:relative;
+    cursor:pointer;
 }
 .nav-item:hover {
-  color: #2C2C2C;
-  background: rgba(212, 165, 116, 0.2);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+    color:#2C2C2C;
+    background:rgba(212,165,116,0.2);
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(139,115,85,0.3);
 }
-.nav-item::before { content: '> '; opacity: 0; transition: opacity 0.3s ease; }
-.nav-item:hover::before { opacity: 1; }
+.nav-item::before { content: '> '; opacity:0; transition: opacity 0.3s ease; }
+.nav-item:hover::before { opacity:1; }
 
-/* Sections */
-.section-title { font-family: 'Velvetyne', sans-serif; font-size: 2rem; color: #2C2C2C; text-align: center; margin-bottom: 2rem; position: relative; }
-.section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 100px; height: 2px; background: #8B7355; }
-.research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
-.research-card { background: rgba(245, 241, 232, 0.9); border: 1px solid #8B7355; padding: 1.5rem; transition: all 0.3s ease; position: relative; }
-.research-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(139, 115, 85, 0.2); }
-.research-card h3 { font-family: 'Velvetyne', sans-serif; color: #2C2C2C; margin-bottom: 1rem; font-size: 1.2rem; }
-.research-card p { color: #5A4A3A; line-height: 1.6; margin-bottom: 1rem; }
-.research-card .meta { font-size: 0.9rem; color: #8B7355; font-style: italic; }
+/* ===== Sections ===== */
+.section-title { font-family:'Velvetyne', sans-serif; font-size:2rem; color:#2C2C2C; text-align:center; margin-bottom:2rem; position:relative; }
+.section-title::after { content:''; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); width:100px; height:2px; background:#8B7355; }
+.research-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; margin-top:2rem; }
+.research-card { background:rgba(245,241,232,0.9); border:1px solid #8B7355; padding:1.5rem; transition:all 0.3s ease; position:relative; }
+.research-card:hover { transform:translateY(-5px); box-shadow:0 8px 25px rgba(139,115,85,0.2); }
+.research-card h3 { font-family:'Velvetyne', sans-serif; color:#2C2C2C; margin-bottom:1rem; font-size:1.2rem; }
+.research-card p { color:#5A4A3A; line-height:1.6; margin-bottom:1rem; }
+.research-card .meta { font-size:0.9rem; color:#8B7355; font-style:italic; }
 
-/* About */
-.about-section { margin-top: 4rem; padding: 2rem; max-width: 1000px; width: 100%; }
-.about-content { background: rgba(245, 241, 232, 0.9); border: 1px solid #8B7355; padding: 2rem; line-height: 1.8; }
+/* ===== About & Contact ===== */
+.about-section, .contact-preview { margin-top:4rem; padding:2rem; max-width:1000px; width:100%; }
+.about-content { background:rgba(245,241,232,0.9); border:1px solid #8B7355; padding:2rem; line-height:1.8; }
+.contact-info { font-size:1.1rem; color:#2C2C2C; margin:1rem 0; }
+.contact-info a { color:#8B7355; text-decoration:none; border-bottom:1px dotted #8B7355; transition:all 0.3s ease; }
+.contact-info a:hover { color:#2C2C2C; border-bottom-style:solid; }
 
-/* Contact */
-.contact-preview { margin-top: 4rem; text-align: center; padding: 2rem; background: rgba(245, 241, 232, 0.8); border-top: 2px solid #8B7355; }
-.contact-info { font-size: 1.1rem; color: #2C2C2C; margin: 1rem 0; }
-.contact-info a { color: #8B7355; text-decoration: none; border-bottom: 1px dotted #8B7355; transition: all 0.3s ease; }
-.contact-info a:hover { color: #2C2C2C; border-bottom-style: solid; }
+/* ===== Footer ===== */
+.footer { margin-top:3rem; padding:2rem; text-align:center; color:#8B7355; font-size:0.9rem; border-top:1px solid #8B7355; }
 
-/* Footer */
-.footer { margin-top: 3rem; padding: 2rem; text-align: center; color: #8B7355; font-size: 0.9rem; border-top: 1px solid #8B7355; }
+/* ===== Animations ===== */
+.fade-in { opacity:0; transform:translateY(30px); animation:fadeInUp 0.8s ease forwards; }
+@keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
 
-/* Fade-in Animation */
-.fade-in { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s ease forwards; }
-@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .main-title { font-size: 2.5rem; }
-  .navigation { flex-direction: column; align-items: center; gap: 1rem; }
-  .research-grid { grid-template-columns: 1fr; }
+/* ===== Responsive ===== */
+@media (max-width:768px) {
+    .main-title { font-size:2.5rem; }
+    .navigation { flex-direction:column; align-items:center; gap:1rem; }
+    .research-grid { grid-template-columns:1fr; }
 }
 </style>
 </head>
 <body>
 <div class="typewriter-container">
-  <div class="hero-section fade-in">
-    <h1 class="main-title" id="main-title">huncut</h1>
-    <div class="typewriter-text" id="typewriter-intro"></div>
 
-    <nav class="navigation">
-      <a href="#about" class="nav-item">About</a>
-      <a href="#research" class="nav-item">Research</a>
-      <a href="#contact" class="nav-item">Contact</a>
-    </nav>
-  </div>
+    <!-- Hero Section -->
+    <div class="hero-section fade-in">
+        <h1 class="main-title" id="main-title">huncut</h1>
+        <div class="typewriter-text" id="typewriter-intro"></div>
 
-  <div id="about" class="about-section fade-in">
-    <h2 class="section-title">About</h2>
-    <div class="about-content"><p>Driven by the nonexistent.</p></div>
-  </div>
-
-  <div id="research" class="research-highlights fade-in">
-    <h2 class="section-title">Research</h2>
-    <div class="research-grid">
-      <div class="research-card">
-        <h3>Emotion Regulation Meta-Analysis</h3>
-        <p>Conducting comprehensive meta-analysis of mindfulness-based interventions on emotion regulation.</p>
-        <div class="meta">University of Amsterdam • 2024 - Present</div>
-      </div>
-      <div class="research-card">
-        <h3>Intelligence & Creativity Research</h3>
-        <p>Supporting research on the overlap of intelligence, creativity and personality constructs in artists.</p>
-        <div class="meta">University of Zagreb • 2023 - Present</div>
-      </div>
-      <div class="research-card">
-        <h3>Digital Biomarkers Research</h3>
-        <p>Research on digital biomarkers for neuropsychiatric conditions.</p>
-        <div class="meta">Vitafluence.ai • 2023 - 2024</div>
-      </div>
+        <nav class="navigation">
+            <a href="#about" class="nav-item">About</a>
+            <a href="#research" class="nav-item">Research</a>
+            <a href="#contact" class="nav-item">Contact</a>
+        </nav>
     </div>
-  </div>
 
-  <div id="contact" class="contact-preview fade-in">
-    <h2 class="section-title">Get In Touch</h2>
-    <div class="contact-info">
-      <p>Email: <a href="mailto:lara.petrovic.xyz@gmail.com">lara.petrovic.xyz@gmail.com</a></p>
-      <p>Based in: Croatia</p>
+    <!-- About Section -->
+    <div id="about" class="about-section fade-in">
+        <h2 class="section-title">About</h2>
+        <div class="about-content">
+            <p>Driven by the nonexistent.</p>
+        </div>
     </div>
-  </div>
+
+    <!-- Research Section -->
+    <div id="research" class="research-highlights fade-in">
+        <h2 class="section-title">Research</h2>
+        <div class="research-grid">
+            <div class="research-card">
+                <h3>Emotion Regulation Meta-Analysis</h3>
+                <p>Conducting comprehensive meta-analysis of mindfulness-based interventions on emotion regulation.</p>
+                <div class="meta">University of Amsterdam • 2024 - Present</div>
+            </div>
+            <div class="research-card">
+                <h3>Intelligence & Creativity Research</h3>
+                <p>Supporting research on the overlap of intelligence, creativity and personality constructs in artists.</p>
+                <div class="meta">University of Zagreb • 2023 - Present</div>
+            </div>
+            <div class="research-card">
+                <h3>Digital Biomarkers Research</h3>
+                <p>Research on digital biomarkers for neuropsychiatric conditions.</p>
+                <div class="meta">Vitafluence.ai • 2023 - 2024</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="contact-preview fade-in">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-info">
+            <p>Email: <a href="mailto:lara.petrovic.xyz@gmail.com">lara.petrovic.xyz@gmail.com</a></p>
+            <p>Based in: Croatia</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Lara Petrović. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const typed = new Typed('#typewriter-intro', {
+        strings: [
+            'Expert and researcher',
+            'of cybercommunication',
+        ],
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 2000,
+        startDelay: 1000,
+        loop: true,
+        showCursor: false
+    });
+
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.research-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'all 0.6s ease';
+        observer.observe(card);
+    });
+});
+</script>
+</body>
+</html>
