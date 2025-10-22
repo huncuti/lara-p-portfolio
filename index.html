@@ -57,6 +57,7 @@ body {
 
 /* ===== Hero Section ===== */
 .hero-section {
+    position: relative;
     text-align: center;
     padding-top: 3rem;
 }
@@ -84,7 +85,10 @@ body {
     gap: 1.5rem;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 12rem;
+    position: absolute;
+    bottom: -14rem;           /* Move down 14rem from the bottom of hero section */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav-item {
