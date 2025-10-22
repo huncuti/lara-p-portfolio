@@ -1,208 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>server.xyz</title>
-
-<!-- External Libraries -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-<script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
-
-<style>
-/* ===== Fonts ===== */
-@font-face {
-    font-family: 'Velvelyne';
-    src: url('fonts/Velvelyne-Regular.woff2') format('woff2'),
-         url('fonts/Velvelyne-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Bianzhidai';
-    src: url('fonts/bianzhidai_noBG-Bubble.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* ===== Reset & Base ===== */
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
-body {
-    font-family: 'Velvetyne', sans-serif;
-    background: #F5F1E8 url('resources/paper-texture.png') no-repeat center center fixed;
-    background-size: cover;
-    color:#2C2C2C;
-    line-height:1.6;
-    overflow-x:hidden;
-}
-
-/* ===== Hero ===== */
-.typewriter-container { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem; }
-.hero-section { text-align:center; padding-top:3rem; width:100%; }
-.main-title {
-    font-family: 'Bianzhidai', 'Letters Torn', serif; /* fallback for older browsers */
-    font-size: 10rem;
-    color: #2C2C2C; /* will be ignored if COLR font works */
-    margin-top: 7rem;
-    letter-spacing: 0.1em;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* subtle depth for fallback */
-}
-
-.typewriter-text { font-size:1.1rem; margin:2rem 0; min-height:60px; padding-right:5px; }
-
-/* ===== Navigation ===== */
-.navigation { margin-top:8rem; display:flex; gap:2rem; flex-wrap:wrap; justify-content:center; }
-.nav-item {
-    font-family:'Velvelyne', sans-serif;
-    font-size:1.1rem;
-    color:#8B7355;
-    text-decoration:none;
-    padding:0.8rem 1.5rem;
-    border:2px solid #8B7355;
-    background:rgba(245,241,232,0.8);
-    transition:all 0.3s ease;
-    position:relative;
-    cursor:pointer;
-}
-.nav-item:hover {
-    color:#2C2C2C;
-    background:rgba(212,165,116,0.2);
-    transform:translateY(-2px);
-    box-shadow:0 4px 12px rgba(139,115,85,0.3);
-}
-.nav-item::before { content: '> '; opacity:0; transition: opacity 0.3s ease; }
-.nav-item:hover::before { opacity:1; }
-
-/* ===== Sections ===== */
-.section-title { font-family:'Velvetyne', sans-serif; font-size:2rem; color:#2C2C2C; text-align:center; margin-bottom:2rem; position:relative; }
-.section-title::after { content:''; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); width:100px; height:2px; background:#8B7355; }
-.research-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; margin-top:2rem; }
-.research-card { background:rgba(245,241,232,0.9); border:1px solid #8B7355; padding:1.5rem; transition:all 0.3s ease; position:relative; }
-.research-card:hover { transform:translateY(-5px); box-shadow:0 8px 25px rgba(139,115,85,0.2); }
-.research-card h3 { font-family:'Velvetyne', sans-serif; color:#2C2C2C; margin-bottom:1rem; font-size:1.2rem; }
-.research-card p { color:#5A4A3A; line-height:1.6; margin-bottom:1rem; }
-.research-card .meta { font-size:0.9rem; color:#8B7355; font-style:italic; }
-
-/* ===== About & Contact ===== */
-.about-section, .contact-preview { margin-top:4rem; padding:2rem; max-width:1000px; width:100%; }
-.about-content { background:rgba(245,241,232,0.9); border:1px solid #8B7355; padding:2rem; line-height:1.8; }
-.contact-info { font-size:1.1rem; color:#2C2C2C; margin:1rem 0; }
-.contact-info a { color:#8B7355; text-decoration:none; border-bottom:1px dotted #8B7355; transition:all 0.3s ease; }
-.contact-info a:hover { color:#2C2C2C; border-bottom-style:solid; }
-
-/* ===== Footer ===== */
-.footer { margin-top:3rem; padding:2rem; text-align:center; color:#8B7355; font-size:0.9rem; border-top:1px solid #8B7355; }
-
-/* ===== Animations ===== */
-.fade-in { opacity:0; transform:translateY(30px); animation:fadeInUp 0.8s ease forwards; }
-@keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
-
-/* ===== Responsive ===== */
-@media (max-width:768px) {
-    .main-title { font-size:2.5rem; }
-    .navigation { flex-direction:column; align-items:center; gap:1rem; }
-    .research-grid { grid-template-columns:1fr; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>server.xyz</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    
+    <style>
+        /* ========== CHANGED: Added Letters Torn font ========== */
+        @font-face {
+            font-family: 'Bianzhidai';
+            src: url('fonts/bianzhidai_noBG-Bubble.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        /* ========== CHANGED: Added Velvetyne font for body ========== */
+        @font-face {
+            font-family: 'Velvetyne';
+            src: url('fonts/Velvelyne-Regular.woff2') format('woff2'),
+                 url('fonts/Velvelyne-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            /* ========== CHANGED: Using Velvetyne for body text ========== */
+            font-family: 'Velvetyne', sans-serif;
+            background: #F5F1E8;
+            background-image: url('resources/paper-texture.png');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #2C2C2C;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .typewriter-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        /* ========== CHANGED: Centered at top of page ========== */
+        .hero-section {
+            text-align: center;
+            padding-top: 3rem;
+            width: 100%;
+        }
+        
+        /* ========== CHANGED: Made title much bigger and centered at top ========== */
+        .main-title {
+                font-family: 'Letters Torn', serif;
+                  font-size: 10rem;
+                  color: #2C2C2C;
+                  margin-top: 7rem;
+                  letter-spacing: 0.1em;
+                  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        /* ========== CHANGED: Hidden subtitle ========== */
+        .subtitle {
+            display: none;
+        }
+        
+        .typewriter-text {
+            font-size: 1.1rem;
+            margin: 2rem 0;
+            min-height: 60px;
+            /* ========== REMOVED: Blinking cursor animation ========== */
+            padding-right: 5px;
+        }
+        
+        /* ========== REMOVED: Blink animation (commented out) ========== */
+        /*
+        @keyframes blink {
+            0%, 50% { border-color: #2C2C2C; }
+            51%, 100% { border-color: transparent; }
+        }
+        */
+        
+        .navigation {
+              margin-top: 8rem;
+              display: flex;
+              gap: 2rem;
+              flex-wrap: wrap;
+              justify-content: center;
+        }
+        
+        .nav-item {
+            /* ========== CHANGED: Using Velvetyne for navigation ========== */
+            font-family: 'Velvetyne', sans-serif;
+            font-size: 1.1rem;
+            color: #8B7355;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #8B7355;
+            background: rgba(245, 241, 232, 0.8);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .nav-item:hover {
+            color: #2C2C2C;
+            background: rgba(212, 165, 116, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+        }
+        
+        .nav-item::before {
+            content: '> ';
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-item:hover::before {
+            opacity: 1;
+        }
+        
+        .research-highlights {
+            margin-top: 4rem;
+            padding: 2rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .section-title {
+            /* ========== CHANGED: Using Velvetyne for section titles ========== */
+            font-family: 'Velvetyne', sans-serif;
+            font-size: 2rem;
+            color: #2C2C2C;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: #8B7355;
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .research-card {
+            background: rgba(245, 241, 232, 0.9);
+            border: 1px solid #8B7355;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 115, 85, 0.2);
+        }
+        
+        .research-card h3 {
+            /* ========== CHANGED: Using Velvetyne for card headings ========== */
+            font-family: 'Velvetyne', sans-serif;
+            color: #2C2C2C;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .research-card p {
+            color: #5A4A3A;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .research-card .meta {
+            font-size: 0.9rem;
+            color: #8B7355;
+            font-style: italic;
+        }
+        
+        .contact-preview {
+            margin-top: 4rem;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(245, 241, 232, 0.8);
+            border-top: 2px solid #8B7355;
+        }
+        
+        .contact-info {
+            font-size: 1.1rem;
+            color: #2C2C2C;
+            margin: 1rem 0;
+        }
+        
+        .contact-info a {
+            color: #8B7355;
+            text-decoration: none;
+            border-bottom: 1px dotted #8B7355;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: #2C2C2C;
+            border-bottom-style: solid;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding: 2rem;
+            text-align: center;
+            color: #8B7355;
+            font-size: 0.9rem;
+            border-top: 1px solid #8B7355;
+        }
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #2C2C2C;
+            /* ========== REMOVED: Blink animation ========== */
+            margin-left: 2px;
+        }
+        
+        /* ========== REMOVED: Second blink animation (commented out) ========== */
+        /*
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        */
+    </style>
 </head>
 <body>
-<div class="typewriter-container">
-
-    <!-- Hero Section -->
-    <div class="hero-section fade-in">
-        <h1 class="main-title" id="main-title">huncut</h1>
-        <div class="typewriter-text" id="typewriter-intro"></div>
-
-        <nav class="navigation">
-            <a href="#about" class="nav-item">About</a>
-            <a href="#research" class="nav-item">Research</a>
-            <a href="#contact" class="nav-item">Contact</a>
-        </nav>
-    </div>
-
-    <!-- About Section -->
-    <div id="about" class="about-section fade-in">
-        <h2 class="section-title">About</h2>
-        <div class="about-content">
-            <p>Driven by the nonexistent.</p>
+    <div class="typewriter-container">
+        <!-- Hero Section -->
+        <div class="hero-section fade-in">
+            <h1 class="main-title" id="main-title">huncut</h1>
+            <div class="typewriter-text" id="typewriter-intro"></div>
+            
+            <nav class="navigation">
+                <a href="about.html" class="nav-item">About</a>
+                <a href="research.html" class="nav-item">Research</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+            </nav>
         </div>
-    </div>
-
-    <!-- Research Section -->
-    <div id="research" class="research-highlights fade-in">
-        <h2 class="section-title">Research</h2>
-        <div class="research-grid">
-            <div class="research-card">
-                <h3>Emotion Regulation Meta-Analysis</h3>
-                <p>Conducting comprehensive meta-analysis of mindfulness-based interventions on emotion regulation.</p>
-                <div class="meta">University of Amsterdam • 2024 - Present</div>
-            </div>
-            <div class="research-card">
-                <h3>Intelligence & Creativity Research</h3>
-                <p>Supporting research on the overlap of intelligence, creativity and personality constructs in artists.</p>
-                <div class="meta">University of Zagreb • 2023 - Present</div>
-            </div>
-            <div class="research-card">
-                <h3>Digital Biomarkers Research</h3>
-                <p>Research on digital biomarkers for neuropsychiatric conditions.</p>
-                <div class="meta">Vitafluence.ai • 2023 - 2024</div>
+        
+        <!-- Research Highlights -->
+        <div class="research-highlights fade-in">
+            <h2 class="section-title">Research</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <h3>Emotion Regulation Meta-Analysis</h3>
+                    <p>Conducting comprehensive meta-analysis of mindfulness-based interventions on emotion regulation. Data extraction, quality assessment, and author correspondence for systematic review.</p>
+                    <div class="meta">University of Amsterdam • 2024 - Present</div>
+                </div>
+                
+                <div class="research-card">
+                    <h3>Intelligence & Creativity Research</h3>
+                    <p>Supporting research on the overlap of intelligence, creativity and personality constructs in artists, non-artists and naive artists across multiple phases of scientific investigation.</p>
+                    <div class="meta">University of Zagreb • 2023 - Present</div>
+                </div>
+                
+                <div class="research-card">
+                    <h3>Digital Biomarkers Research</h3>
+                    <p>Research on digital biomarkers for neuropsychiatric conditions, scientific writing, data analysis, and grant applications preparation for AI-driven healthcare solutions.</p>
+                    <div class="meta">Vitafluence.ai • 2023 - 2024</div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- Contact Section -->
-    <div id="contact" class="contact-preview fade-in">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-info">
-            <p>Email: <a href="mailto:lara.petrovic.xyz@gmail.com">lara.petrovic.xyz@gmail.com</a></p>
-            <p>Based in: Croatia</p>
+        
+        <!-- Contact Preview -->
+        <div class="contact-preview fade-in">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:lara.petrovic.xyz@gmail.com">lara.petrovic.xyz@gmail.com</a></p>
+                <p>Based in: Croatia</p>
+            </div>
         </div>
+        
+        <footer class="footer">
+            <p>&copy; 2024 Lara Petrović. All rights reserved.</p>
+        </footer>
     </div>
+    
+    <script>
+        // Typewriter Effect for Introduction
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize typewriter effect
+            const typed = new Typed('#typewriter-intro', {
+                strings: [
+                    'Expert and researcher',
+                    'in cybercommunication',
+                ],
+                typeSpeed: 50,
+                backSpeed: 30,
+                backDelay: 2000,
+                startDelay: 1000,
+                loop: true,
+                /* ========== CHANGED: Removed cursor to stop blinking ========== */
+                showCursor: false
 
-    <footer class="footer">
-        <p>&copy; 2024 Lara Petrović. All rights reserved.</p>
-    </footer>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const typed = new Typed('#typewriter-intro', {
-        strings: [
-            'Expert and researcher',
-            'of cybercommunication',
-        ],
-        typeSpeed: 50,
-        backSpeed: 30,
-        backDelay: 2000,
-        startDelay: 1000,
-        loop: true,
-        showCursor: false
-    });
-
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
+            });
+            
+            // Animate research cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.research-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
         });
-    }, observerOptions);
-
-    document.querySelectorAll('.research-card').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'all 0.6s ease';
-        observer.observe(card);
-    });
-});
-</script>
-</body>
-</html>
+    </script>
