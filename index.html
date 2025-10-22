@@ -39,205 +39,67 @@
             box-sizing: border-box;
         }
         
-        body {
-            /* ========== CHANGED: Using Velvetyne for body text ========== */
-            font-family: 'Velvetyne', sans-serif;
-            background: #000;
-            color: #fff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        .typewriter-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            position: relative;
-            background: #000;
-        }
-        
-        /* ========== CHANGED: Centered at top of page ========== */
-        .hero-section {
-            text-align: center;
-            padding-top: 3rem;
-            width: 100%;
-        }
-        
-        /* ========== CHANGED: Made title much bigger and centered at top ========== */
-        .main-title {
-                font-family: 'Typefesse', serif;
-                  font-size: 10rem;
-                  color: #fff;
-                  margin-top: 7rem;
-                  letter-spacing: 0.1em;
-                  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        /* ========== CHANGED: Hidden subtitle ========== */
-        .subtitle {
-            display: none;
-        }
-        
-        .typewriter-text {
-            font-size: 1.1rem;
-            margin: 2rem 0;
-            min-height: 60px;
-            /* ========== REMOVED: Blinking cursor animation ========== */
-            padding-right: 5px;
-            color: #fff;
-        }
-        
-        /* ========== REMOVED: Blink animation (commented out) ========== */
-        /*
-        @keyframes blink {
-            0%, 50% { border-color: #2C2C2C; }
-            51%, 100% { border-color: transparent; }
-        }
-        */
-        
-        .navigation {
-              margin-top: 8rem;
-              display: flex;
-              gap: 2rem;
-              flex-wrap: wrap;
-              justify-content: center;
-        }
-        
-        .nav-item {
-            /* ========== CHANGED: Using Velvetyne for navigation ========== */
-            font-family: 'Velvetyne', sans-serif;
-            font-size: 1.1rem;
-            color: #8B7355;
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            border: 2px solid #8B7355;
-            background: rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            cursor: pointer;
-        }
-        
-        .nav-item:hover {
-            color: #000;
-            background: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
-        }
-        
-        .nav-item::before {
-            content: '> ';
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .nav-item:hover::before {
-            opacity: 1;
-        }
-        
-        .research-highlights {
-            margin-top: 4rem;
-            padding: 2rem;
-            max-width: 1000px;
-            width: 100%;
-        }
-        
-        .section-title {
-            /* ========== CHANGED: Using Velvetyne for section titles ========== */
-            font-family: 'Velvetyne', sans-serif;
-            font-size: 2rem;
-            color: #2C2C2C;
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
-            background: #8B7355;
-        }
-        
-        .research-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .research-card {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid #8B7355;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .research-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(139, 115, 85, 0.2);
-        }
-        
-        .research-card h3 {
-            /* ========== CHANGED: Using Velvetyne for card headings ========== */
-            font-family: 'Velvetyne', sans-serif;
-            color: #2C2C2C;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-        
-        .research-card p {
-            color: #5A4A3A;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        
-        .research-card .meta {
-            font-size: 0.9rem;
-            color: #fff;
-            font-style: italic;
-        }
-        
-        .contact-preview {
-            margin-top: 4rem;
-            text-align: center;
-            padding: 2rem;
-            background: rgba(245, 241, 232, 0.8);
-            border-top: 2px solid #8B7355;
-        }
-        
-        .contact-info {
-            font-size: 1.1rem;
-            color: #2C2C2C;
-            margin: 1rem 0;
-        }
-        
-        .contact-info a {
-            color: #8B7355;
-            text-decoration: none;
-            border-bottom: 1px dotted #8B7355;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-info a:hover {
-            color: #2C2C2C;
-            border-bottom-style: solid;
-        }
-        
-        .footer {
-            margin-top: 3rem;
-            padding: 2rem;
-            text-align: center;
-            color: #8B7355;
-            font-size: 0.9rem;
-            border-top: 1px solid #8B7355;
-        }
+      body {
+    font-family: 'Velvetyne', sans-serif;
+    background: #000; /* black page background */
+    color: #fff; /* white text */
+}
+
+.typewriter-container {
+    background: #000; /* black container */
+    color: #fff;
+}
+
+.main-title {
+    color: #fff; /* white title */
+}
+
+.typewriter-text {
+    color: #fff; /* white typewriter text */
+    background: #000; /* black textbox background */
+    padding: 1rem 1.5rem;
+    border: 2px solid #fff; /* white border for the textbox */
+    border-radius: 5px;
+}
+
+.nav-item {
+    color: #fff;
+    border: 2px solid #fff;
+    background: rgba(255,255,255,0.1); /* slightly transparent black */
+}
+
+.nav-item:hover {
+    color: #000;
+    background: #fff;
+}
+
+.research-card {
+    background: rgba(255,255,255,0.05); /* very dark card */
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.research-card h3,
+.research-card p,
+.research-card .meta {
+    color: #fff;
+}
+
+.contact-preview {
+    background: rgba(255,255,255,0.05);
+    border-top: 2px solid #fff;
+    color: #fff;
+}
+
+.contact-info a {
+    color: #fff;
+    border-bottom: 1px dotted #fff;
+}
+
+.footer {
+    color: #fff;
+    border-top: 1px solid #fff;
+}
         
         @media (max-width: 768px) {
             .main-title {
