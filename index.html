@@ -13,6 +13,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
 
 <style>
+<style>
 /* ===== Fonts ===== */
 @font-face {
     font-family: 'Typefesse';
@@ -67,16 +68,14 @@ body {
     color: #fff;
     margin-top: 3rem;
     letter-spacing: 0.1em;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .typewriter-text {
     font-size: 1.2rem;
     color: #fff;
-    background: #111;
-    padding: 1rem 2rem;
-    border: 2px solid #fff;
-    border-radius: 8px;
+    background: transparent;
+    border: none;
+    padding: 0;
     margin: 2rem 0;
 }
 
@@ -92,17 +91,15 @@ body {
 .nav-item {
     font-family: 'Velvetyne', sans-serif;
     color: #fff;
-    background: rgba(255,255,255,0.05);
-    border: 2px solid #fff;
+    background: transparent;
+    border: none;
     padding: 0.7rem 1.5rem;
-    border-radius: 5px;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .nav-item:hover {
-    color: #000;
-    background: #fff;
+    color: #ccc;
     transform: translateY(-2px);
 }
 
@@ -120,18 +117,6 @@ body {
     color: #fff;
     text-align: center;
     margin-bottom: 2rem;
-    position: relative;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 2px;
-    background: #fff;
 }
 
 .research-grid {
@@ -141,7 +126,7 @@ body {
 }
 
 .research-card {
-    background: zero;
+    background: transparent;
     border: none;
     color: #fff;
     padding: 0;
@@ -150,23 +135,15 @@ body {
 
 .research-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(255,255,255,0.1);
-}
-
-.research-card h3,
-.research-card p,
-.research-card .meta {
-    color: #fff;
 }
 
 /* ===== Contact Section ===== */
 .contact-preview {
     margin-top: 4rem;
     text-align: center;
-    padding: 0;
     background: transparent;
-    border-top: none;
     padding: 0;
+    border-top: none;
 }
 
 .contact-info a {
@@ -184,7 +161,6 @@ body {
     padding: 2rem;
     text-align: center;
     color: #fff;
-    border-top: 1px solid #fff;
 }
 
 /* ===== Animations ===== */
@@ -209,7 +185,6 @@ body {
 
     .typewriter-text {
         font-size: 1rem;
-        padding: 0.7rem 1rem;
     }
 
     .navigation {
@@ -221,6 +196,8 @@ body {
         grid-template-columns: 1fr;
     }
 }
+</style>
+
 </style>
 </head>
 <body>
