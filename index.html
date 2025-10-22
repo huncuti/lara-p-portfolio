@@ -1,370 +1,274 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>server.xyz</title>
-
-
-
-<!-- External Libraries -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-
-<script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
-
-
-
-<style>
-
-/* ===== Fonts ===== */
-
-@font-face {
-
-    font-family: 'Typefesse';
-
-    src: url('fonts/Typefesse_Claire-Obscure.woff2') format('woff2'),
-
-         url('fonts/Typefesse_Claire-Obscure.woff') format('woff');
-
-    font-weight: normal;
-
-    font-style: normal;
-
-    font-display: swap;
-
-}
-
-
-
-@font-face {
-
-    font-family: 'Velvetyne';
-
-    src: url('fonts/Velvelyne-Regular.woff2') format('woff2'),
-
-         url('fonts/Velvelyne-Regular.woff') format('woff');
-
-    font-weight: normal;
-
-    font-style: normal;
-
-    font-display: swap;
-
-}
-
-
-
-/* ===== Global Styles ===== */
-
-* {
-
-    margin: 0;
-
-    padding: 0;
-
-    box-sizing: border-box;
-
-}
-
-
-
-body {
-
-    font-family: 'Velvetyne', sans-serif;
-
-    background: #000;
-
-    color: #fff;
-
-    line-height: 1.6;
-
-}
-
-
-
-.typewriter-container {
-
-    min-height: 100vh;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    padding: 2rem;
-
-    background: #000;
-
-}
-
-
-
-/* ===== Hero Section ===== */
-
-.hero-section {
-
-    position: relative;
-
-    text-align: center;
-
-    padding-top: 3rem;
-
-}
-
-
-
-
-.hero-text {
-
-
-    display: inline-block; /* typewriter text won't push nav */
-
-
-}
-
-
-
-
-.main-title {
-
-    font-family: 'Typefesse', serif;
-
-    font-size: 10rem;
-
-@@ -85,9 +89,7 @@
-
-    gap: 1.5rem;
-
-    flex-wrap: wrap;
-
-    justify-content: center;
-
-
-    position: absolute;
-
-
-    margin-top: 14rem;
-
-
-    position: relative;
-
-
-    margin-top: 14rem; /* fixed space below hero text */
-
-}
-
-
-
-.nav-item {
-
-@@ -192,6 +194,7 @@
-
-    .navigation {
-
-        flex-direction: column;
-
-        gap: 1rem;
-
-
-        margin-top: 8rem; /* smaller spacing for mobile */
-
-    }
-
-
-
-    .research-grid {
-
-@@ -204,83 +207,85 @@
-
-<div class="typewriter-container">
-
-    <!-- Hero Section -->
-
-    <div class="hero-section fade-in">
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>server.xyz</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+
+    <style>
+        /* ===== Fonts ===== */
+        @font-face {
+            font-family: 'Typefesse';
+            src: url('fonts/Typefesse_Claire-Obscure.woff2') format('woff2'),
+                 url('fonts/Typefesse_Claire-Obscure.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Velvetyne';
+            src: url('fonts/Velvelyne-Regular.woff2') format('woff2'),
+                 url('fonts/Velvelyne-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ===== Global Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Velvetyne', sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== Hero Section (Merged typewriter-container and hero-section styles) ===== */
+        .typewriter-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: #000;
+            position: relative; /* For general positioning context */
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: 'Typefesse', serif;
+            font-size: 8rem;
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 1px #fff;
+            letter-spacing: 0.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .typewriter-text {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== Navigation ===== */
+        .navigation {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-item {
+            padding: 0.5rem 1rem;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* ===== Research Section ===== */
+        .research-highlights {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Velvetyne', serif;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            color: transparent;
+            -webkit-text-stroke: 0.5px #fff;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .research-card {
+            background: #111;
+            padding: 1.5rem;
+            border: 1px solid #333;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .research-card h3 {
+            font-family: 'Velvetyne', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-card p {
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .research-card .meta {
+            font-size: 0.9rem;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* ===== Contact Preview ===== */
+        .contact-preview {
+            padding: 5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin-top: 1rem;
+        }
+
+        .contact-info a:hover {
+            color: #aaa;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: #555;
+            margin-top: 5rem;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 5rem;
+            }
+            .typewriter-text {
+                font-size: 1.2rem;
+            }
+            .navigation {
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 3rem; /* Adjusted for mobile view */
+            }
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="typewriter-container">
         <h1 class="main-title">huncut</h1>
-
-
         <div class="typewriter-text" id="typewriter-intro"></div>
 
-
-        <div class="hero-text">
-
-
-            <h1 class="main-title">huncut</h1>
-
-
-            <div class="typewriter-text" id="typewriter-intro"></div>
-
-
-        </div>
-
-
-
         <nav class="navigation">
-
             <a href="about.html" class="nav-item">About</a>
-
             <a href="research.html" class="nav-item">Research</a>
-
             <a href="contact.html" class="nav-item">Contact</a>
-
         </nav>
-
     </div>
 
-
-
-    <!-- Research Highlights -->
-
-    <div class="research-highlights fade-in">
-
+    <div class="research-highlights">
         <h2 class="section-title">Research</h2>
-
         <div class="research-grid">
-
             <div class="research-card">
-
                 <h3>Emotion Regulation Meta-Analysis</h3>
-
                 <p>Comprehensive meta-analysis of mindfulness-based interventions on emotion regulation.</p>
-
                 <div class="meta">University of Amsterdam • 2024 - Present</div>
-
             </div>
-
-
-
             <div class="research-card">
-
                 <h3>Intelligence & Creativity Research</h3>
-
                 <p>Supporting research on intelligence, creativity, and personality constructs across multiple phases.</p>
-
                 <div class="meta">University of Zagreb • 2023 - Present</div>
-
             </div>
-
-
-
             <div class="research-card">
-
                 <h3>Digital Biomarkers Research</h3>
-
                 <p>Research on digital biomarkers for neuropsychiatric conditions and AI-driven healthcare solutions.</p>
-
                 <div class="meta">Vitafluence.ai • 2023 - 2024</div>
-
             </div>
-
         </div>
-
     </div>
 
-
-
-    <!-- Contact Preview -->
-
-    <div class="contact-preview fade-in">
-
+    <div class="contact-preview">
         <h2 class="section-title">Get In Touch</h2>
-
         <div class="contact-info">
-
             <p>Email: <a href="mailto:lara.petrovic.xyz@gmail.com">lara.petrovic.xyz@gmail.com</a></p>
-
             <p>Based in: Croatia</p>
-
         </div>
-
     </div>
-
-
 
     <footer class="footer">
-
         <p>&copy; 2024 Lara Petrović. All rights reserved.</p>
-
     </footer>
 
-</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Typewriter Effect
+            const typed = new Typed('#typewriter-intro', {
+                strings: ['Expert and researcher in cybercommunication'],
+                typeSpeed: 50,
+                backSpeed: 30,
+                backDelay: 2000,
+                startDelay: 1000,
+                loop: true,
+                showCursor: false
+            });
 
+            // Animate research cards on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
 
-
-<script>
-
-document.addEventListener('DOMContentLoaded', function() {
-
-    const typed = new Typed('#typewriter-intro', {
-
-        strings: ['Expert and researcher in cybercommunication'],
-
-        typeSpeed: 50,
-
-        backSpeed: 30,
-
-        backDelay: 2000,
-
-        startDelay: 1000,
-
-        loop: true,
-
-        showCursor: false
-
-    });
-
-
-
-    // Animate research cards on scroll
-
-    const observer = new IntersectionObserver((entries) => {
-
-        entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-                entry.target.style.opacity = '1';
-
-                entry.target.style.transform = 'translateY(0)';
-
-            }
-
+            document.querySelectorAll('.research-card').forEach(card => {
+                // Initial styles are set in CSS, but the JS logic is kept
+                // to trigger the animation on intersection
+                observer.observe(card);
+            });
         });
-
-    }, { threshold: 0.1 });
-
-
-
-    document.querySelectorAll('.research-card').forEach(card => {
-
-        card.style.opacity = '0';
-
-        card.style.transform = 'translateY(30px)';
-
-        card.style.transition = 'all 0.6s ease';
-
-        observer.observe(card);
-
-    });
-
-});
-
-</script>
+    </script>
 
 </body>
-
 </html>
