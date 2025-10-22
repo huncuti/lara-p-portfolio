@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lara Petrović</title>
-
+    <title>server.xyz</title>
     
     <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
@@ -14,14 +13,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
     
     <style>
-          @font-face {
-        font-family: 'Letters from Sweden';
-        src: url('fonts/LettersFromSweden-Regular.woff2') format('woff2'),
-             url('fonts/LettersFromSweden-Regular.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-    }
+        /* ========== CHANGED: Added Letters Torn font ========== */
+        @font-face {
+            font-family: 'Letters Torn';
+            src: url('fonts/Letters-Torn.woff2') format('woff2'),
+                 url('fonts/Letters-Torn.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        /* ========== CHANGED: Added Velvetyne font for body ========== */
+        @font-face {
+            font-family: 'Velvetyne';
+            src: url('fonts/Velvelyne-Regular.woff2') format('woff2'),
+                 url('fonts/Velvelyne-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -29,7 +40,8 @@
         }
         
         body {
-            font-family: 'Letters from Sweden', monospace;
+            /* ========== CHANGED: Using Velvetyne for body text ========== */
+            font-family: 'Velvetyne', sans-serif;
             background: #F5F1E8;
             background-image: url('resources/paper-texture.png');
             background-size: cover;
@@ -73,7 +85,8 @@
         }
         
         .main-title {
-            font-family: 'Letters from Sweden', monospace;
+            /* ========== CHANGED: Using Letters Torn for main title only ========== */
+            font-family: 'Letters Torn', serif;
             font-size: 3.5rem;
             color: #2C2C2C;
             margin-bottom: 1rem;
@@ -82,7 +95,8 @@
         }
         
         .subtitle {
-            font-family: 'Letters from Sweden', monospace;
+            /* ========== CHANGED: Using Velvetyne for subtitle ========== */
+            font-family: 'Velvetyne', sans-serif;
             font-size: 1.4rem;
             color: #8B7355;
             margin-bottom: 2rem;
@@ -93,15 +107,17 @@
             font-size: 1.1rem;
             margin: 2rem 0;
             min-height: 60px;
-            border-right: 2px solid #2C2C2C;
+            /* ========== REMOVED: Blinking cursor animation ========== */
             padding-right: 5px;
-            animation: blink 1s infinite;
         }
         
+        /* ========== REMOVED: Blink animation (commented out) ========== */
+        /*
         @keyframes blink {
             0%, 50% { border-color: #2C2C2C; }
             51%, 100% { border-color: transparent; }
         }
+        */
         
         .navigation {
             margin-top: 3rem;
@@ -112,7 +128,8 @@
         }
         
         .nav-item {
-            font-family: 'Letters from Sweden', monospace;
+            /* ========== CHANGED: Using Velvetyne for navigation ========== */
+            font-family: 'Velvetyne', sans-serif;
             font-size: 1.1rem;
             color: #8B7355;
             text-decoration: none;
@@ -149,7 +166,8 @@
         }
         
         .section-title {
-            font-family: 'Letters from Sweden', monospace;
+            /* ========== CHANGED: Using Velvetyne for section titles ========== */
+            font-family: 'Velvetyne', sans-serif;
             font-size: 2rem;
             color: #2C2C2C;
             text-align: center;
@@ -189,7 +207,8 @@
         }
         
         .research-card h3 {
-            font-family: 'Letters from Sweden', monospace;
+            /* ========== CHANGED: Using Velvetyne for card headings ========== */
+            font-family: 'Velvetyne', sans-serif;
             color: #2C2C2C;
             margin-bottom: 1rem;
             font-size: 1.2rem;
@@ -281,14 +300,17 @@
             width: 2px;
             height: 1.2em;
             background: #2C2C2C;
-            animation: blink 1s infinite;
+            /* ========== REMOVED: Blink animation ========== */
             margin-left: 2px;
         }
         
+        /* ========== REMOVED: Second blink animation (commented out) ========== */
+        /*
         @keyframes blink {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
         }
+        */
     </style>
 </head>
 <body>
@@ -358,6 +380,8 @@
                 backDelay: 2000,
                 startDelay: 1000,
                 loop: true,
+                /* ========== CHANGED: Removed cursor to stop blinking ========== */
+                showCursor: false
 
             });
             
@@ -382,7 +406,7 @@
                 card.style.transition = 'all 0.6s ease';
                 observer.observe(card);
             });
-            
+        });
     </script>
 </body>
 </html>
