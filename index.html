@@ -32,6 +32,15 @@
             font-style: normal;
             font-display: swap;
         }
+
+        /* ========== ADDED: Bianzhidai COLR-Grid font for main title ========== */
+        @font-face {
+            font-family: 'Bianzhidai';
+            src: url('fonts/bianzhidai_COLR-grid.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
         
         * {
             margin: 0;
@@ -39,8 +48,11 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
-            /* ========== CHANGED: Using Velvetyne for body text ========== */
             font-family: 'Velvetyne', sans-serif;
             background: #F5F1E8;
             background-image: url('resources/paper-texture.png');
@@ -61,23 +73,23 @@
             position: relative;
         }
         
-        /* ========== CHANGED: Centered at top of page ========== */
         .hero-section {
             text-align: center;
             padding-top: 3rem;
             width: 100%;
         }
         
-        /* ========== CHANGED: Made title much bigger and centered at top ========== */
+        /* ========== UPDATED: Use Bianzhidai for title ========== */
         .main-title {
-                font-family: 'Letters Torn', serif;
-                  font-size: 10rem;
-                  color: #2C2C2C;
-                  margin-top: 7rem;
-                  letter-spacing: 0.1em;
-                  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-family: 'Bianzhidai', 'Letters Torn', serif;
+            font-size: 10rem;
+            color: #2C2C2C;
+            margin-top: 7rem;
+            letter-spacing: 0.1em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-palette: normal;
         }
-        /* ========== CHANGED: Hidden subtitle ========== */
+
         .subtitle {
             display: none;
         }
@@ -86,28 +98,18 @@
             font-size: 1.1rem;
             margin: 2rem 0;
             min-height: 60px;
-            /* ========== REMOVED: Blinking cursor animation ========== */
             padding-right: 5px;
         }
         
-        /* ========== REMOVED: Blink animation (commented out) ========== */
-        /*
-        @keyframes blink {
-            0%, 50% { border-color: #2C2C2C; }
-            51%, 100% { border-color: transparent; }
-        }
-        */
-        
         .navigation {
-              margin-top: 8rem;
-              display: flex;
-              gap: 2rem;
-              flex-wrap: wrap;
-              justify-content: center;
+            margin-top: 8rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         
         .nav-item {
-            /* ========== CHANGED: Using Velvetyne for navigation ========== */
             font-family: 'Velvetyne', sans-serif;
             font-size: 1.1rem;
             color: #8B7355;
@@ -145,7 +147,6 @@
         }
         
         .section-title {
-            /* ========== CHANGED: Using Velvetyne for section titles ========== */
             font-family: 'Velvetyne', sans-serif;
             font-size: 2rem;
             color: #2C2C2C;
@@ -186,7 +187,6 @@
         }
         
         .research-card h3 {
-            /* ========== CHANGED: Using Velvetyne for card headings ========== */
             font-family: 'Velvetyne', sans-serif;
             color: #2C2C2C;
             margin-bottom: 1rem;
@@ -203,6 +203,20 @@
             font-size: 0.9rem;
             color: #8B7355;
             font-style: italic;
+        }
+        
+        .about-section {
+            margin-top: 4rem;
+            padding: 2rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .about-content {
+            background: rgba(245, 241, 232, 0.9);
+            border: 1px solid #8B7355;
+            padding: 2rem;
+            line-height: 1.8;
         }
         
         .contact-preview {
@@ -260,7 +274,6 @@
             }
         }
         
-        /* Animation Classes */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -279,35 +292,31 @@
             width: 2px;
             height: 1.2em;
             background: #2C2C2C;
-            /* ========== REMOVED: Blink animation ========== */
             margin-left: 2px;
         }
-        
-        /* ========== REMOVED: Second blink animation (commented out) ========== */
-        /*
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        */
     </style>
 </head>
 <body>
     <div class="typewriter-container">
-        <!-- Hero Section -->
         <div class="hero-section fade-in">
             <h1 class="main-title" id="main-title">huncut</h1>
             <div class="typewriter-text" id="typewriter-intro"></div>
             
             <nav class="navigation">
-                <a href="about.html" class="nav-item">About</a>
-                <a href="research.html" class="nav-item">Research</a>
-                <a href="contact.html" class="nav-item">Contact</a>
+                <a href="#about" class="nav-item">About</a>
+                <a href="#research" class="nav-item">Research</a>
+                <a href="#contact" class="nav-item">Contact</a>
             </nav>
         </div>
         
-        <!-- Research Highlights -->
-        <div class="research-highlights fade-in">
+        <div id="about" class="about-section fade-in">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <p>Driven by the nonexistent.</p>
+            </div>
+        </div>
+        
+        <div id="research" class="research-highlights fade-in">
             <h2 class="section-title">Research</h2>
             <div class="research-grid">
                 <div class="research-card">
@@ -330,8 +339,7 @@
             </div>
         </div>
         
-        <!-- Contact Preview -->
-        <div class="contact-preview fade-in">
+        <div id="contact" class="contact-preview fade-in">
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-info">
                 <p>Email: <a href="mailto:lara.petrovic.xyz@gmail.com">lara.petrovic.xyz@gmail.com</a></p>
@@ -345,25 +353,20 @@
     </div>
     
     <script>
-        // Typewriter Effect for Introduction
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize typewriter effect
             const typed = new Typed('#typewriter-intro', {
                 strings: [
                     'Expert and researcher',
-                    'of cybercommunication',
+                    'in cybercommunication',
                 ],
                 typeSpeed: 50,
                 backSpeed: 30,
                 backDelay: 2000,
                 startDelay: 1000,
                 loop: true,
-                /* ========== CHANGED: Removed cursor to stop blinking ========== */
                 showCursor: false
-
             });
             
-            // Animate research cards on scroll
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
