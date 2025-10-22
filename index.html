@@ -1,82 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>server.xyz</title>
-    
-    <!-- External Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
-    
-    <style>
-        /* ========== CHANGED: Added Letters Torn font ========== */
-        @font-face {
-            font-family: 'Typefesse';
-            src: url('fonts/Typefesse_Claire-Obscure.woff') format('woff'), 
-                url('fonts/Typefesse_Claire-Obscure.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-        
-        /* ========== CHANGED: Added Velvetyne font for body ========== */
-        @font-face {
-            font-family: 'Velvetyne';
-            src: url('fonts/Velvelyne-Regular.woff2') format('woff2'),
-                 url('fonts/Velvelyne-Regular.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-      body {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>server.xyz</title>
+
+<!-- External Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+<script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+
+<style>
+/* ===== Fonts ===== */
+@font-face {
+    font-family: 'Typefesse';
+    src: url('fonts/Typefesse_Claire-Obscure.woff2') format('woff2'),
+         url('fonts/Typefesse_Claire-Obscure.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Velvetyne';
+    src: url('fonts/Velvelyne-Regular.woff2') format('woff2'),
+         url('fonts/Velvelyne-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ===== Global Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: 'Velvetyne', sans-serif;
-    background: #000; /* black page background */
-    color: #fff; /* white text */
+    background: #000;
+    color: #fff;
+    line-height: 1.6;
 }
 
 .typewriter-container {
-    background: #000; /* black container */
-    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: #000;
+}
+
+/* ===== Hero Section ===== */
+.hero-section {
+    text-align: center;
+    padding-top: 3rem;
 }
 
 .main-title {
-    color: #fff; /* white title */
+    font-family: 'Typefesse', serif;
+    font-size: 10rem;
+    color: #fff;
+    margin-top: 3rem;
+    letter-spacing: 0.1em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .typewriter-text {
-    color: #fff; /* white typewriter text */
-    background: #000; /* black textbox background */
-    padding: 1rem 1.5rem;
-    border: 2px solid #fff; /* white border for the textbox */
-    border-radius: 5px;
+    font-size: 1.2rem;
+    color: #fff;
+    background: #111;
+    padding: 1rem 2rem;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    margin: 2rem 0;
+    display: inline-block;
+}
+
+/* ===== Navigation ===== */
+.navigation {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 3rem;
 }
 
 .nav-item {
+    font-family: 'Velvetyne', sans-serif;
     color: #fff;
+    background: rgba(255,255,255,0.05);
     border: 2px solid #fff;
-    background: rgba(255,255,255,0.1); /* slightly transparent black */
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .nav-item:hover {
     color: #000;
     background: #fff;
+    transform: translateY(-2px);
+}
+
+/* ===== Research Section ===== */
+.research-highlights {
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 4rem;
+    padding: 0 1rem;
+}
+
+.section-title {
+    font-family: 'Velvetyne', sans-serif;
+    font-size: 2.5rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: #fff;
+}
+
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
 .research-card {
-    background: rgba(255,255,255,0.05); /* very dark card */
+    background: rgba(255,255,255,0.05);
     border: 1px solid #fff;
-    color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.research-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255,255,255,0.1);
 }
 
 .research-card h3,
@@ -85,10 +160,14 @@
     color: #fff;
 }
 
+/* ===== Contact Section ===== */
 .contact-preview {
+    margin-top: 4rem;
+    text-align: center;
+    padding: 2rem;
     background: rgba(255,255,255,0.05);
     border-top: 2px solid #fff;
-    color: #fff;
+    border-radius: 8px;
 }
 
 .contact-info a {
@@ -96,154 +175,136 @@
     border-bottom: 1px dotted #fff;
 }
 
+.contact-info a:hover {
+    color: #ccc;
+}
+
+/* ===== Footer ===== */
 .footer {
+    margin-top: 3rem;
+    padding: 2rem;
+    text-align: center;
     color: #fff;
     border-top: 1px solid #fff;
 }
-        
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.5rem;
-            }
-            
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .navigation {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-            
-            .research-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Animation Classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .typewriter-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.2em;
-            background: #2C2C2C;
-            /* ========== REMOVED: Blink animation ========== */
-            margin-left: 2px;
-        }
-        
-        /* ========== REMOVED: Second blink animation (commented out) ========== */
-        /*
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        */
-    </style>
+
+/* ===== Animations ===== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 3rem;
+    }
+
+    .typewriter-text {
+        font-size: 1rem;
+        padding: 0.7rem 1rem;
+    }
+
+    .navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .research-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 <body>
-    <div class="typewriter-container">
-        <!-- Hero Section -->
-        <div class="hero-section fade-in">
-            <h1 class="main-title" id="main-title">huncut</h1>
-            <div class="typewriter-text" id="typewriter-intro"></div>
-            
-            <nav class="navigation">
-                <a href="about.html" class="nav-item">About</a>
-                <a href="research.html" class="nav-item">Research</a>
-                <a href="contact.html" class="nav-item">Contact</a>
-            </nav>
-        </div>
-        
-        <!-- Research Highlights -->
-        <div class="research-highlights fade-in">
-            <h2 class="section-title">Research</h2>
-            <div class="research-grid">
-                <div class="research-card">
-                    <h3>Emotion Regulation Meta-Analysis</h3>
-                    <p>Conducting comprehensive meta-analysis of mindfulness-based interventions on emotion regulation. Data extraction, quality assessment, and author correspondence for systematic review.</p>
-                    <div class="meta">University of Amsterdam • 2024 - Present</div>
-                </div>
-                
-                <div class="research-card">
-                    <h3>Intelligence & Creativity Research</h3>
-                    <p>Supporting research on the overlap of intelligence, creativity and personality constructs in artists, non-artists and naive artists across multiple phases of scientific investigation.</p>
-                    <div class="meta">University of Zagreb • 2023 - Present</div>
-                </div>
-                
-                <div class="research-card">
-                    <h3>Digital Biomarkers Research</h3>
-                    <p>Research on digital biomarkers for neuropsychiatric conditions, scientific writing, data analysis, and grant applications preparation for AI-driven healthcare solutions.</p>
-                    <div class="meta">Vitafluence.ai • 2023 - 2024</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Contact Preview -->
-        <div class="contact-preview fade-in">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-info">
-                <p>Email: <a href="mailto:lara.petrovic.xyz@gmail.com">lara.petrovic.xyz@gmail.com</a></p>
-                <p>Based in: Croatia</p>
-            </div>
-        </div>
-        
-        <footer class="footer">
-            <p>&copy; 2024 Lara Petrović. All rights reserved.</p>
-        </footer>
-    </div>
-    
-    <script>
-        // Typewriter Effect for Introduction
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize typewriter effect
-            const typed = new Typed('#typewriter-intro', {
-                strings: [
-                    'Expert and researcher',
-                    'in cybercommunication',
-                ],
-                typeSpeed: 50,
-                backSpeed: 30,
-                backDelay: 2000,
-                startDelay: 1000,
-                loop: true,
-                /* ========== CHANGED: Removed cursor to stop blinking ========== */
-                showCursor: false
+<div class="typewriter-container">
+    <!-- Hero Section -->
+    <div class="hero-section fade-in">
+        <h1 class="main-title">huncut</h1>
+        <div class="typewriter-text" id="typewriter-intro"></div>
 
-            });
-            
-            // Animate research cards on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('.research-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'all 0.6s ease';
-                observer.observe(card);
-            });
+        <nav class="navigation">
+            <a href="about.html" class="nav-item">About</a>
+            <a href="research.html" class="nav-item">Research</a>
+            <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Research Highlights -->
+    <div class="research-highlights fade-in">
+        <h2 class="section-title">Research</h2>
+        <div class="research-grid">
+            <div class="research-card">
+                <h3>Emotion Regulation Meta-Analysis</h3>
+                <p>Comprehensive meta-analysis of mindfulness-based interventions on emotion regulation.</p>
+                <div class="meta">University of Amsterdam • 2024 - Present</div>
+            </div>
+
+            <div class="research-card">
+                <h3>Intelligence & Creativity Research</h3>
+                <p>Supporting research on intelligence, creativity, and personality constructs across multiple phases.</p>
+                <div class="meta">University of Zagreb • 2023 - Present</div>
+            </div>
+
+            <div class="research-card">
+                <h3>Digital Biomarkers Research</h3>
+                <p>Research on digital biomarkers for neuropsychiatric conditions and AI-driven healthcare solutions.</p>
+                <div class="meta">Vitafluence.ai • 2023 - 2024</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Preview -->
+    <div class="contact-preview fade-in">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-info">
+            <p>Email: <a href="mailto:lara.petrovic.xyz@gmail.com">lara.petrovic.xyz@gmail.com</a></p>
+            <p>Based in: Croatia</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Lara Petrović. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const typed = new Typed('#typewriter-intro', {
+        strings: ['Expert and researcher', 'in cybercommunication'],
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 2000,
+        startDelay: 1000,
+        loop: true,
+        showCursor: false
+    });
+
+    // Animate research cards on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
         });
-    </script>
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.research-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'all 0.6s ease';
+        observer.observe(card);
+    });
+});
+</script>
+</body>
+</html>
