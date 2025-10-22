@@ -62,6 +62,10 @@ body {
     padding-top: 3rem;
 }
 
+.hero-text {
+    display: inline-block; /* typewriter text won't push nav */
+}
+
 .main-title {
     font-family: 'Typefesse', serif;
     font-size: 10rem;
@@ -85,9 +89,7 @@ body {
     gap: 1.5rem;
     flex-wrap: wrap;
     justify-content: center;
-    position: absolute;
-    margin-top: 14rem;
-    position: relative;
+    margin-top: 14rem; /* fixed space below hero text */
 }
 
 .nav-item {
@@ -192,6 +194,7 @@ body {
     .navigation {
         flex-direction: column;
         gap: 1rem;
+        margin-top: 8rem; /* smaller spacing for mobile */
     }
 
     .research-grid {
@@ -204,8 +207,10 @@ body {
 <div class="typewriter-container">
     <!-- Hero Section -->
     <div class="hero-section fade-in">
-        <h1 class="main-title">huncut</h1>
-        <div class="typewriter-text" id="typewriter-intro"></div>
+        <div class="hero-text">
+            <h1 class="main-title">huncut</h1>
+            <div class="typewriter-text" id="typewriter-intro"></div>
+        </div>
 
         <nav class="navigation">
             <a href="about.html" class="nav-item">About</a>
