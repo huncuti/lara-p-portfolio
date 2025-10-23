@@ -98,13 +98,20 @@
             margin:0 auto;
             text-align:left;
         }
-        .section-title{
-            font-family:'Velvelyne',serif;
-            font-size:4.2rem;          /* 42 rem → 4.2 rem */
-            margin-bottom:2rem;
-            color:transparent;
-            -webkit-text-stroke:.5px #fff;
-            text-align:left;
+        /* ===== uniform 42-rem section titles ===== */
+            .section-title,
+            #find-out .section-title,
+            #research .section-title,
+            #art .section-title,
+            #contact .section-title {
+                font-family: 'Velvelyne', serif;
+                font-size: 4.2rem !important;   /* 42 rem */
+                margin-bottom: 2rem;
+                color: transparent;
+                -webkit-text-stroke: 0.5px #fff;
+                text-align: left;
+            }
+            #contact .section-title { text-align: center; }   /* keep contact centred */
         }
         .about-card,
         .research-card{
