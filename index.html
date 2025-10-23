@@ -39,6 +39,8 @@
             box-sizing: border-box;
         }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Velvelyne', sans-serif;
             background: #000;
@@ -103,6 +105,47 @@
             background: #fff;
             color: #000;
         }
+
+        /* ===== About (Find out) Section ===== */
+        .about-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .about-card {
+            background: #111;
+            padding: 1.5rem;
+            border: 1px solid #333;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .about-card h3 {
+            font-family: 'Velvelyne', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-card p { color: #ccc; }
+
+        .about-card ul {
+            margin-top: 0.5rem;
+            padding-left: 1.2rem;
+            color: #ccc;
+        }
+
+        .about-card li { margin-bottom: 0.4rem; }
 
         /* ===== Research Section ===== */
         .research-highlights {
@@ -205,43 +248,67 @@
         <div class="typewriter-text" id="typewriter-intro"></div>
 
         <nav class="navigation">
-            <a href="about.html" class="nav-item">find out</a>
-            <a href="research.html" class="nav-item">research</a>
-            <a href="contact.html" class="nav-item">contact</a>
+            <a href="#find-out" class="nav-item">find out</a>
+            <a href="#research" class="nav-item">research</a>
+            <a href="#contact" class="nav-item">contact</a>
         </nav>
     </div>
 
-    <div class="research-highlights">
-        <h2 class="section-title">Research</h2>
+    <div id="find-out" class="about-section">
+        <h2 class="section-title">find out</h2>
+        <div class="about-content">
+            <div class="about-card">
+                <h3>exploring nonexistent</h3>
+                <p>psych major focused on evidence-based and interdisciplinary approach. working on a theory</p>
+            </div>
+            <div class="about-card">
+                <h3>focus areas</h3>
+                <ul>
+                    <li>cyberpsychology</li>
+                    <li>emotion regulation, mindfulness-based interventions</li>
+                    <li>creativity, intelligence, personality</li>
+                    <li>digital biomarkers, AI-driven healthcare</li>
+                </ul>
+            </div>
+            <div class="about-card">
+                <h3>education</h3>
+                <p>master of psychology — university of zagreb (2020–2024)</p>
+                <p>bachelor of psychology — university of zagreb (2017–2020)</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="research" class="research-highlights">
+        <h2 class="section-title">current and previous formal research</h2>
         <div class="research-grid">
             <div class="research-card">
-                <h3>Emotion Regulation Meta-Analysis</h3>
-                <p>Comprehensive meta-analysis of mindfulness-based interventions on emotion regulation.</p>
-                <div class="meta">University of Amsterdam • 2024 - Present</div>
+                <h3>emotion regulation meta-analysis</h3>
+                <p>comprehensive meta-analysis of mindfulness-based interventions on emotion regulation.</p>
+                <div class="meta">university of amsterdam • 2024 - present</div>
             </div>
             <div class="research-card">
-                <h3>Intelligence & Creativity Research</h3>
-                <p>Supporting research on intelligence, creativity, and personality constructs across multiple phases.</p>
-                <div class="meta">University of Zagreb • 2023 - Present</div>
+                <h3>intelligence & creativity research</h3>
+                <p>supporting research on intelligence, creativity, and personality constructs across multiple phases.</p>
+                <div class="meta">university of zagreb • 2023 - present</div>
             </div>
             <div class="research-card">
-                <h3>Digital Biomarkers Research</h3>
-                <p>Research on digital biomarkers for neuropsychiatric conditions and AI-driven healthcare solutions.</p>
+                <h3>digital biomarkers research</h3>
+                <p>research on digital biomarkers for neuropsychiatric conditions and ai-driven healthcare solutions.</p>
                 <div class="meta">Vitafluence.ai • 2023 - 2024</div>
             </div>
         </div>
     </div>
 
-    <div class="contact-preview">
+    <div id="contact" class="contact-preview">
         <h2 class="section-title">get in touch</h2>
         <div class="contact-info">
             <p>e-mail: <a href="mailto:lara.petrovic.xyz@gmail.com">lara.petrovic.xyz@gmail.com</a></p>
-            <p>based in: Croatia</p>
+            <p>based in: croatia</p>
         </div>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2024 Lara Petrović. All rights reserved.</p>
+        <p>&copy; 2024 huncut. all rights reserved.</p>
     </footer>
 
     <script>
@@ -270,6 +337,11 @@
             document.querySelectorAll('.research-card').forEach(card => {
                 // Initial styles are set in CSS, but the JS logic is kept
                 // to trigger the animation on intersection
+                observer.observe(card);
+            });
+
+            // Animate about cards on scroll
+            document.querySelectorAll('.about-card').forEach(card => {
                 observer.observe(card);
             });
         });
