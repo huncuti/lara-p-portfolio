@@ -121,7 +121,7 @@
 
         .about-card {
             background: transparent;
-            padding: 0.25rem 0 0.25rem 1.25rem; /* left indent for bullet */
+            padding: 0.25rem 0;
             border: none;
             text-align: left;
             opacity: 0;
@@ -132,13 +132,7 @@
         }
 
         .about-card::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            top: 0.6rem;
-            color: #fff;
-            font-size: 1rem;
-            line-height: 1;
+            content: none;
         }
 
         .about-card h3 {
@@ -151,7 +145,8 @@
 
         .about-card ul {
             margin-top: 0.5rem;
-            padding-left: 1.2rem;
+            padding-left: 0;
+            list-style: none;
             color: #ccc;
         }
 
@@ -180,7 +175,7 @@
 
         .research-card {
             background: transparent;
-            padding: 0.25rem 0 0.25rem 1.25rem; /* left indent for bullet */
+            padding: 0.25rem 0;
             border: none;
             text-align: left;
             opacity: 0;
@@ -191,13 +186,7 @@
         }
 
         .research-card::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            top: 0.6rem;
-            color: #fff;
-            font-size: 1rem;
-            line-height: 1;
+            content: none;
         }
 
         .research-card h3 {
@@ -222,27 +211,37 @@
             padding: 5rem 2rem;
             max-width: 800px;
             margin: 0 auto;
-            text-align: left;
+            text-align: center;
         }
 
         .contact-info p {
             margin: 0.75rem 0;
             position: relative;
-            padding-left: 1.25rem; /* left indent for bullet */
+            padding-left: 0;
+            text-align: center;
         }
 
         .contact-info p::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            top: 0.3rem;
-            color: #fff;
-            font-size: 1rem;
-            line-height: 1;
+            content: none;
         }
 
         .contact-info a:hover {
             color: #aaa;
+        }
+
+        /* Center contact section title */
+        .contact-preview .section-title {
+            text-align: center;
+        }
+
+        /* Intro line before find-out */
+        .pre-findout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            font-size: 42px;
+            line-height: 1.2;
+            text-align: left;
         }
 
         /* ===== Footer ===== */
@@ -287,11 +286,12 @@
         </nav>
     </div>
 
+    <div class="pre-findout">exploring nonexistent</div>
+
     <div id="find-out" class="about-section">
         <h2 class="section-title">find out</h2>
         <div class="about-content">
             <div class="about-card">
-                <h3>exploring nonexistent</h3>
                 <p>psych major focused on evidence-based and interdisciplinary approach. working on a theory</p>
             </div>
             <div class="about-card">
