@@ -39,6 +39,8 @@
             box-sizing: border-box;
         }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Velvelyne', sans-serif;
             background: #000;
@@ -104,6 +106,47 @@
             background: #fff;
             color: #000;
         }
+
+        /* ===== About (Find out) Section ===== */
+        .about-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .about-card {
+            background: #111;
+            padding: 1.5rem;
+            border: 1px solid #333;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .about-card h3 {
+            font-family: 'Velvelyne', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-card p { color: #ccc; }
+
+        .about-card ul {
+            margin-top: 0.5rem;
+            padding-left: 1.2rem;
+            color: #ccc;
+        }
+
+        .about-card li { margin-bottom: 0.4rem; }
 
         /* ===== Research Section ===== */
         .research-highlights {
@@ -206,13 +249,36 @@
         <div class="typewriter-text" id="typewriter-intro"></div>
 
         <nav class="navigation">
-            <a href="about.html" class="nav-item">find out</a>
-            <a href="research.html" class="nav-item">research</a>
-            <a href="contact.html" class="nav-item">contact</a>
+            <a href="#find-out" class="nav-item">find out</a>
+            <a href="#research" class="nav-item">research</a>
+            <a href="#contact" class="nav-item">contact</a>
         </nav>
     </div>
 
-    <div class="research-highlights">
+    <div id="find-out" class="about-section">
+        <h2 class="section-title">find out</h2>
+        <div class="about-content">
+            <div class="about-card">
+                <h3>About Lara</h3>
+                <p>Psychology researcher focused on emotion regulation, creativity, and digital biomarkers. Experienced across academia and industry with an evidence-based and interdisciplinary approach.</p>
+            </div>
+            <div class="about-card">
+                <h3>Focus Areas</h3>
+                <ul>
+                    <li>Emotion regulation & mindfulness-based interventions</li>
+                    <li>Creativity, intelligence & personality constructs</li>
+                    <li>Digital biomarkers & AI-driven healthcare</li>
+                </ul>
+            </div>
+            <div class="about-card">
+                <h3>Education</h3>
+                <p>Master of Psychology — University of Zagreb (2020–2024)</p>
+                <p>Bachelor of Psychology — University of Zagreb (2017–2020)</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="research" class="research-highlights">
         <h2 class="section-title">Research</h2>
         <div class="research-grid">
             <div class="research-card">
@@ -233,7 +299,7 @@
         </div>
     </div>
 
-    <div class="contact-preview">
+    <div id="contact" class="contact-preview">
         <h2 class="section-title">get in touch</h2>
         <div class="contact-info">
             <p>e-mail: <a href="mailto:lara.petrovic.xyz@gmail.com">lara.petrovic.xyz@gmail.com</a></p>
@@ -271,6 +337,11 @@
             document.querySelectorAll('.research-card').forEach(card => {
                 // Initial styles are set in CSS, but the JS logic is kept
                 // to trigger the animation on intersection
+                observer.observe(card);
+            });
+
+            // Animate about cards on scroll
+            document.querySelectorAll('.about-card').forEach(card => {
                 observer.observe(card);
             });
         });
